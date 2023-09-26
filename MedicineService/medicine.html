@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Medicamentos</title>
+</head>
+<body>
+    <h1>Crear o Editar Medicamento</h1>
+    <h2>Ik, que paila html, sorry 😒</h2>
+    <form id="medicineForm">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="price">Precio:</label>
+        <input type="number" id="price" name="price" required><br>
+
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" required><br>
+
+        <label for="providerId">ID del Proveedor:</label>
+        <input type="number" id="providerId" name="providerId" required><br>
+
+        <button type="submit" id="createButton">Crear</button>
+        <button type="button" id="updateButton">Actualizar</button>
+        <button type="button" id="deleteButton">Eliminar</button>
+    </form>
+
+    <!-- Agregar una tabla para mostrar la lista de medicamentos -->
+    <h2>Lista de Medicamentos</h2>
+    <table id="medicineTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>ID del Proveedor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script  type="module" src="medicineService.js"></script>
+</body>
+</html>
+
