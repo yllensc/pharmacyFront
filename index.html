@@ -1,14 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRONT JEJE</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="style.css">
+	<script src="main.js" async></script>
+	<script src="app.js" defer type="module"></script>
+	<title>AdminSite</title>
 </head>
 <body>
-    <h4>HI EVERYONE 🏥</h4>
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand"><i class='bx bxs-smile icon'></i> AdminSite</a>
+		<ul class="side-menu">
+			<li><a href="#" class="active"><i class='bx bxs-dashboard icon' ></i> Dashboard</a></li>
+			<li class="divider" data-text="main">Main</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Venta </a>
+			</li>
+			
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Compra </i></a>
+			</li>
 
-    <script  type="module" src="js/app.js"></script>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Gestion <i class='bx bx-chevron-right icon-right' ></i></a>
+				<ul class="side-dropdown">
+					<li><a href="MedicineService/medicine.html">Crud Medicamento</a></li>
+					<li><a href="#">Crud Proveedor</a></li>
+					<li><a href="#">Crud Paciente</a></li>
+				</ul>
+			</li>
+			
+			<li class="divider" data-text="Informe">Informes</li>
+			<li><a href="#"><i class='bx bxs-inbox icon' ></i>Ventas</a></li>
+			<li><a href="#"><i class='bx bxs-inbox icon' ></i>Compras</a></li>
+			<li><a href="#"><i class='bx bxs-inbox icon' ></i>Ganancias</a></li>
+			<li><a href="#"><i class='bx bxs-inbox icon' ></i>Medicamentos</a></li>
+			<li><a href="#"><i class='bx bxs-inbox icon' ></i>Empleados</a></li>
+			<li><a href="#"><i class='bx bxs-inbox icon' ></i>Proveedores</a></li>
+			<li><a href="#"><i class='bx bxs-inbox icon' ></i>Pacientes</a></li>
+			<!-- <li>
+				<a href="#"><i class='bx bxs-notepad icon' ></i> Forms <i class='bx bx-chevron-right icon-right' ></i></a>
+				<ul class="side-dropdown">
+					<li><a href="#">Basic</a></li>
+					<li><a href="#">Select</a></li>
+					<li><a href="#">Checkbox</a></li>
+					<li><a href="#">Radio</a></li>
+				</ul>
+			</li> -->
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- NAVBAR -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu toggle-sidebar' ></i>
+			<form action="#">
+				
+			</form>
+			
+			<span class="divider"></span>
+			<div class="profile">
+				<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+				<ul class="profile-link">
+					<li><a href="#"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
+					<li><a href="#"><i class='bx bxs-cog' ></i> Settings</a></li>
+					<li><a href="#"><i class='bx bxs-log-out-circle' ></i> Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<h1 class="title">Dashboard</h1>
+			<ul class="breadcrumbs">
+				<li><a href="#">Home</a></li>
+				<li class="divider">/</li>
+				<li><a href="#" class="active">Dashboard</a></li>
+			</ul>
+			<div class="info-data">
+				<div class="card">
+					<div class="head">
+						<div>
+							<h2>1500</h2>
+							<p>Medicamento mas caro</p>
+						</div>
+						<i class='bx bx-trending-up icon' ></i>
+					</div>
+					<span class="progress" data-value="40%"></span>
+					<span class="label">Nombre medicamento</span>
+				</div>
+				<div class="card">
+					<div class="head">
+						<div>
+							<h2>234</h2>
+							<p>Recaudado</p>
+						</div>
+						<i class='bx bx-trending-down icon down' ></i>
+					</div>
+					<span class="progress" data-value="60%"></span>
+					<span class="label">Cantidad total de dinero recaudado por las ventas de medicamentos.</span>
+				</div>
+				<div class="card">
+					<div class="head">
+						<div>
+							<h2>465</h2>
+							<p>Medicamentos vendidos</p>
+						</div>
+						<i class='bx bx-trending-up icon' ></i>
+					</div>
+					<span class="progress" data-value="30%"></span>
+					<span class="label">Obtener el total de medicamentos vendidos en marzo(este mes) de 2023</span>
+				</div>
+				<div class="card">
+					<div class="head">
+						<div>
+							<h2>235</h2>
+							<p>Medicamento menos vendido</p>
+						</div>
+						<i class='bx bx-trending-up icon' ></i>
+					</div>
+					<span class="progress" data-value="80%"></span>
+					<span class="label">Obtener el medicamento menos vendido en 2023.</span>
+				</div>
+			</div>
+			<div class="data">
+				<div class="content-data">
+					<div class="head">
+						<h3>Sales Report</h3>
+					</div>
+					<!-- conteido -->
+					<h1>Aqui se puede colocar las ventas realizadas en el momento</h1>
+					<h2>vendedor	|	paciente	|	medicamento		|	Cantidad	|	total</h2>
+				</div>
+			
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- NAVBAR -->
 </body>
 </html>
-
