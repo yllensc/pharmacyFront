@@ -37,13 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then((result) => {
         if (result.isAuthenticated === true) {
-          document.cookie = "token=" + encodeURIComponent(result.token);
+          document.cookie = `token=${encodeURIComponent(result.token)}; path=/`;
           document.cookie =
-            "refreshToken=" + encodeURIComponent(result.refreshToken);
+            `refreshToken=${encodeURIComponent(result.refreshToken)}; path=/`;
           document.cookie =
-            "isAuthenticated=" + encodeURIComponent(result.isAuthenticated);
-          document.cookie = "userName=" + encodeURIComponent(result.userName);
-          window.location.assign("../index.html");
+            `isAuthenticated=${encodeURIComponent(result.isAuthenticated)}; path=/`;
+          document.cookie = `userName=${encodeURIComponent(result.userName)}; path=/`;
+          window.location.assign(index);
         }
 
         if (
