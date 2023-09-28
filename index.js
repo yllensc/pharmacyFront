@@ -27,12 +27,14 @@ async function loadFirstData() {
 
     const result = await response.json();
     firtsData.innerHTML = `
+    <div class="text-end pb-2">
+    <span class="badge bg-success rounded-3 fw-semibold">Most Value</span>
+      </div>
         <div class="head">
           <div>
             <h2 class="fs-1">$${result[0].price}</h2>
             <p class="fs-3">${result[0].name}</p>
           </div>
-          <span class="badge bg-success rounded-3 fw-semibold">Most Value</span>
         </div>
         <span class="label fs-4"><i class="bx bx-trending-up icon"></i> Stock: ${result[0].stock}</span>
         <span class="label fs-5">Provider: ${result[0].providerName}</span>`;
@@ -53,12 +55,14 @@ async function loadSecondData() {
 
     const result = await response.json();
     secondData.innerHTML = `
+    <div class="text-end pb-2">
+    <span class="badge bg-success rounded-3 fw-semibold">Earned in Sales</span>
+      </div>
         <div class="head">
           <div>
-            <h2 class="fs-1">$${result.totalSales}</h2>
+            <h2 class="fs-1">$${result.totalSales.toFixed(2)}</h2>
             <p class="fs-3">${result.totalSales}</p>
           </div>
-          <span class="badge bg-success rounded-3 fw-semibold">Earned in Sales</span>
         </div>
         <span class="label fs-4">Stock: ${result.totalSales}</span>
         <span class="label fs-5">Provider: ${result.totalSales}</span>`;
