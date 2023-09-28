@@ -5,9 +5,6 @@ console.log(login);
 
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("form-signin");
-  const inputUser = document.getElementById("inputUser");
-  const inputPassword = document.getElementById("inputPassword");
-  const buttonLogin = document.getElementById("buttonLogin");
 
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -38,11 +35,15 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((result) => {
         if (result.isAuthenticated === true) {
           document.cookie = `token=${encodeURIComponent(result.token)}; path=/`;
-          document.cookie =
-            `refreshToken=${encodeURIComponent(result.refreshToken)}; path=/`;
-          document.cookie =
-            `isAuthenticated=${encodeURIComponent(result.isAuthenticated)}; path=/`;
-          document.cookie = `userName=${encodeURIComponent(result.userName)}; path=/`;
+          document.cookie = `refreshToken=${encodeURIComponent(
+            result.refreshToken
+          )}; path=/`;
+          document.cookie = `isAuthenticated=${encodeURIComponent(
+            result.isAuthenticated
+          )}; path=/`;
+          document.cookie = `userName=${encodeURIComponent(
+            result.userName
+          )}; path=/`;
           window.location.assign(index);
         }
 
