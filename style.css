@@ -613,3 +613,9 @@ main .btn-send:hover {
 	background-color: transparent;
 	border: none;
 }
+
+.carColumn{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}

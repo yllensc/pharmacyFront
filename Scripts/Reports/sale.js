@@ -1,4 +1,4 @@
-import {getMedicines,end5,end8} from "../../Scripts/routes.js";
+import {getMedicines,end5,end8,end9, end21} from "../../Scripts/routes.js";
 const options = {
     method: "GET",
     headers: {
@@ -10,6 +10,12 @@ const options = {
 const $selectOptionsMedicine = document.getElementById("selectMedicine");
 const $contEnd5 = document.getElementById("totalMedicines");
 const $contEnd8 = document.getElementById('totalSales');
+
+const $tableModal = document.getElementById('tableModal');
+const $titleModal = document.getElementById('exampleModalLabel');
+
+const $btnUnsold2023 = document.getElementById('btnUnsold');
+const $btnUnsoldNever = document.getElementById('btnUnsoldN');
 
 //AddEventListener - Sale
 document.addEventListener("DOMContentLoaded", function () {
@@ -27,8 +33,17 @@ $selectOptionsMedicine.addEventListener('change', ()=>
     $contEnd5.innerHTML=" ";
     return 
 });
+$btnUnsold2023.addEventListener('click', ()=>{
+    const titleModal = "Unsold medicines in 2023 🤨🤨";
+
+    loadUnsold(end9,titleModal);
+}
+);
+//$btnUnsold2023.addEventListener('click', loadUnsoldNever());
 
 //FUNCIONES
+
+
 async function loadMedicine(){
     try
     {
@@ -102,6 +117,69 @@ async function loadTotalAllSales()
             <p class="card-text fs-3 text-center">${result.totalSales}😿  </p>`;
         }
        
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+
+async function loadUnsold(enpoint, titlemodal)
+{
+    try
+    {
+        const response = await fetch(enpoint,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+
+        if(result != "")
+        {
+            $titleModal.innerHTML= titlemodal;
+            $tableModal.innerHTML = "";
+            let table = `<thead>
+                            <th scope="row">N°</th>
+                            <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Stock</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="listMedicines">
+                        </tbody>`;
+            $tableModal.insertAdjacentHTML('beforeend',table);
+            const $modal= document.getElementById('listMedicines');
+
+            result.forEach((medicine, index)=>{
+               const {name, price, stock} = medicine;
+                let htmlModal =  `<tr>
+                                    <th scope="row">${index+1}</th>
+                                    <td>
+                                        <img src="https://cdn-icons-png.flaticon.com/128/10915/10915194.png" alt="provider.png" style="width: 75px;">
+                                    </td>
+                                    <td>${name}</td>
+                                    <td>${price}</td>
+                                    <td>${stock}</td>
+
+                                    </tr>`;
+                $modal.insertAdjacentHTML('beforeend',htmlModal);
+
+            });
+        }else
+        {
+            Swal.fire({
+                title: 'Yupii',
+                text: 'All medicines have been sold in 2023!',
+                imageUrl: 'https://cdn-icons-png.flaticon.com/128/1786/1786650.png',
+                imageAlt: 'Dedido arriba',
+                timer: 2500
+              });
+        }
+
     }catch(error)
     {
         console.error(error);
