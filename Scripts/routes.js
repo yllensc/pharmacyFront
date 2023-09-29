@@ -4,6 +4,8 @@
 export const login = "http://localhost:5223/api/pharmacy/User/token";
 
 // PURCHASED
+export const getProviders = "http://localhost:5223/api/pharmacy/Provider/onlyProviders";
+
 export const end3 = "http://localhost:5223/api/pharmacy/Purchase/medicinesPurchased";
 export const end13 = "http://localhost:5223/api/pharmacy/Purchase/providersWithoutPurchases";
 
