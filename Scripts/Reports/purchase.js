@@ -1,4 +1,4 @@
-import {end28,end35,end24,end13,getProviders,end3 } from "../../Scripts/routes.js";
+import {end28,end35,end16,end24,end13,getProviders,end3 } from "../../Scripts/routes.js";
 const purchaseHtml =  "../../Scripts/Reports/sale.js";
 const options = {
     method: "GET",
@@ -10,10 +10,11 @@ const options = {
 const $tableModal = document.getElementById('tableModal');
 const $titleModal = document.getElementById('exampleModalLabel');
 const $contEnd28 = document.getElementById('totalProviders');
-
 const $contEnd35 = document.getElementById('providerAleast5medicines');
-
 const $contEnd24 = document.getElementById('providerMoreMedicines');
+
+const $tableEnd16 = document.getElementById('infoEndpoint16');
+
 const $tablaEnd13 = document.getElementById('infoEndpoint13');
 const $medicinesByprovider = document.getElementById("medicinesbyProvider");
 const $selectOptions = document.getElementById("selectProvider");
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadTotalProviderPurchased();
     loadAleast5medicines();
     loadMoreMedicinesByProvider();
+    loadGainByProvider();
     loadProvidersWithoutPurchases();
     loadProvider();
 });
@@ -222,6 +224,32 @@ async function loadAleast5medicines()
                                     </div>`;
             
         }
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function loadGainByProvider()
+{
+    try
+    {
+        const response = await fetch(end16,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        result.forEach((provider, index) => {
+            const {idenNumber,name,totalGain2023} = provider;
+            let html = ` <tr>
+                            <th scope="row">${index+1}</th>
+                            <td>${idenNumber}</td>
+                            <td>${name}</td>
+                            <td>${totalGain2023}</td>
+                        </tr>`;
+            $tableEnd16.insertAdjacentHTML('beforeend',html);
+        });
     }catch(error)
     {
         console.error(error);
