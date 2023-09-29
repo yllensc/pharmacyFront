@@ -118,113 +118,128 @@
       <h1 class="title text-center">Providers purchasing report</h1>
 
       <!--Enpoint 28,24 -->
-      <div class="container">
-        <div class="row">
-          <div class="row cards " style="width: auto; margin: auto auto;">
-            <div id="totalProviders" style="width: auto;"> <!--Se agrega dinámicamente--></div>
-            <div id="providerMoreMedicines" style="width: auto;"> <!--Se agrega dinámicamente--></div>
-            <div id="providerAleast5medicines" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+        <div class="container">
+          <div class="row">
+            <div class="row cards " style="width: auto; margin: auto auto;">
+              <div id="totalProviders" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+              <div id="providerMoreMedicines" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+              <div id="providerAleast5medicines" style="width: auto;"> <!--Se agrega dinámicamente--></div>
 
+            </div>
           </div>
         </div>
-      </div>
       <!--Enpoint 28,24 -->
       <!--Modal-->
-      <div class="modal fade" id="modalProviders" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel"><!--Se llena dinámicamente --></h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table" id="tableModal">
-                <!--Se llena dinámicamente-->
-              </table>
-            </div>
+        <div class="modal fade" id="modalProviders" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><!--Se llena dinámicamente --></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <table class="table" id="tableModal">
+                  <!--Se llena dinámicamente-->
+                </table>
+              </div>
 
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       <!--Modal-->
 
       <!--Enpoint 16-->
-
-      <!--Enpoint 16-->
-      <div class="purchasesData">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-header">
-              Total purchases by provider in 2023 💲💲
+        <div class="purchasesData">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-header">
+                Total purchases by provider in 2023 💲💲
+              </div>
+              <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Identification Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Total Purchased</th>
+                </tr>
+                </thead>
+                <tbody id="infoEndpoint16">
+                    <!--Se agrega dinámicamente-->
+                </tbody>
+              </table>
             </div>
-            <table class="table">
-              <thead>
-              <tr>
-                  <th scope="col">N°</th>
-                  <th scope="col">Identification Number</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Total Purchased</th>
-              </tr>
-              </thead>
-              <tbody id="infoEndpoint16">
-                  <!--Se agrega dinámicamente-->
-              </tbody>
-            </table>
-          </div>
         </div><br>
+      <!--Enpoint 16-->
+      
 
       <!--Enpoint 13 -->
-      <div class="purchasesData">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-header">
-              Providers without purchases in the last year 😥😥
+        <div class="purchasesData">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-header">
+                Providers without purchases in the last year 😥😥
+              </div>
+              <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Identification Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody id="infoEndpoint13">
+                    <!--Se agrega dinámicamente-->
+                </tbody>
+              </table>
             </div>
-            <table class="table">
-              <thead>
-              <tr>
-                  <th scope="col">N°</th>
-                  <th scope="col">Identification Number</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-              </tr>
-              </thead>
-              <tbody id="infoEndpoint13">
-                  <!--Se agrega dinámicamente-->
-              </tbody>
-            </table>
-          </div>
-        </div><br>
+          </div><br>
       <!--Enpoint 13 -->
 
       <!--Enpoint 3 -->
-      <div class="card">
-          <div class="card-body">
-            <div class="card-header">
-                <p class="text-end"> 
-                  💊💊 Medicines purchased from a provider</p>          
-            </div>
-            <select  id="selectProvider" class="form-select" aria-label="Default select example">
-              <option selected>Select provider</option>
-            </select>
-            <br>
-            <div class="container">
-              <div class="row">
-                <div class="row cards" style="width: auto; margin: auto auto;" id="medicinesbyProvider">
-                    <!--Se agrega dinámicamente-->
+        <div class="card">
+            <div class="card-body">
+              <div class="card-header">
+                  <p class="text-end"> 
+                    💊💊 Medicines purchased from a provider</p>          
+              </div>
+              <select  id="selectProvider" class="form-select" aria-label="Default select example">
+                <option selected>Select provider</option>
+              </select>
+              <br>
+              <div class="container">
+                <div class="row">
+                  <div class="row cards" style="width: auto; margin: auto auto;" id="medicinesbyProvider">
+                      <!--Se agrega dinámicamente-->
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
       <!--Enpoint 3 -->
 
-      
+      <p>ESTO VA EN SALESS PERO MIENTRAS LO PONGO AQUÍ JEJEJEJEJE</p>
+
+      <!--Enpoint 5-->
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title text-center">Total sales by medicine 📈</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">
+            <select  id="selectMedicine" class="form-select" aria-label="Default select example">
+              <option selected>Select medicine</option>
+            </select>
+          </h6>
+          <p class="card-text" id="totalMedicines"></p>
+          
+        </div>
+      </div>
+      <!--Enpoint 5-->
+
 
 
       

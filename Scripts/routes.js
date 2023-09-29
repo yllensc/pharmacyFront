@@ -29,6 +29,8 @@ export const end25 = "http://localhost:5223/api/pharmacy/Sale/patientsByMedicine
 
 export const end10 = "http://localhost:5223/api/pharmacy/Medicine/moreExpensive";
 
+//MEDICINES
+export const getMedicines = "http://localhost:5223/api/pharmacy/Medicine/";
 
 /* Routes HTML */
 export const indexRoute = "../Modules/index.js"; 
