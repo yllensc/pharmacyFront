@@ -13,6 +13,7 @@ export const end13 = "http://localhost:5223/api/pharmacy/Purchase/providersWitho
 export const end4 = "http://localhost:5223/api/pharmacy/Provider/totalProviders";
 export const end16 = "http://localhost:5223/api/pharmacy/Provider/gain2023";
 export const end24 = "http://localhost:5223/api/pharmacy/Provider/moreQuantityMedicines";
+export const end28 = "http://localhost:5223/api/pharmacy/Provider/totalProviders";
 export const end35 = "http://localhost:5223/api/pharmacy/Provider/aleast5medicines";
 
 // SALES

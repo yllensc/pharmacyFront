@@ -114,7 +114,44 @@
     <!-- NAVBAR -->
 
     <main>
+
       <h1 class="title text-center">Providers purchasing report</h1>
+
+      <!--Enpoint 28,24 -->
+      <div class="container">
+        <div class="row">
+          <div class="row cards " style="width: auto; margin: auto auto;">
+            <div id="totalProviders" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+            <div id="providerMoreMedicines" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+            <div id="providerAleast5medicines" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+
+          </div>
+        </div>
+      </div>
+      <!--Enpoint 28,24 -->
+      <!--Modal-->
+      <div class="modal fade" id="modalProviders" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"><!--Se llena dinámicamente --></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table" id="tableModal">
+                <!--Se llena dinámicamente-->
+              </table>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Modal-->
+
+      <!--Enpoint 13 -->
       <div class="purchasesData">
         <div class="card">
           <div class="card-body">
@@ -131,12 +168,15 @@
               </tr>
               </thead>
               <tbody id="infoEndpoint13">
-  
+                  <!--Se agrega dinámicamente-->
               </tbody>
             </table>
           </div>
-        </div>
-        <div class="card">
+        </div><br>
+      <!--Enpoint 13 -->
+
+      <!--Enpoint 3 -->
+      <div class="card">
           <div class="card-body">
             <div class="card-header">
                 <p class="text-end"> 
@@ -144,15 +184,24 @@
             </div>
             <select  id="selectProvider" class="form-select" aria-label="Default select example">
               <option selected>Select provider</option>
-              
             </select>
             <br>
-            <div id="medicinesbyProvider">
-
+            <div class="container">
+              <div class="row">
+                <div class="row cards" style="width: auto; margin: auto auto;" id="medicinesbyProvider">
+                    <!--Se agrega dinámicamente-->
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!--Enpoint 3 -->
+
+      
+
+
       
 
     </main>
