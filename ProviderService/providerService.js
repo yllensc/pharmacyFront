@@ -1,55 +1,47 @@
-let providersGlobal = [];
+import { fetchProviders } from '../UtilService/utilCRUDfetch.js';
 
 
 document.addEventListener('DOMContentLoaded', function () {
     const medicineForm = document.getElementById('medicineForm');
     const tableProviders = document.querySelector('.body-tableProviders');
-    console.log(tableProviders);
-    const urlProvider = "http://localhost:5223/api/pharmacy/Provider";
-    async function fetchProviders() {
-        try {
-            const response = await fetch(`${urlProvider}/getProviders`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
     
-            if (response.ok) {
-                const prueba = await response.json();
-                providersGlobal = prueba;
-                console.log(providersGlobal);
-                showProviders(providersGlobal);
-            } else {
-                console.error('Error al obtener la lista de proveedores:', response.statusText);
-                return [];
-            }
-        } catch (error) {
-            console.error('Error al realizar la solicitud GET:', error);
-            return [];
-        }
+
+    //Promise.all([fetchProviders()])
+    //        .then(()=>{
+    //            const providerLoaded = new Event('loadProvider');
+    //            document.dispatchEvent(providerLoaded);
+    //            showProviders(providersGlobal);
+    //        });
+    //        document.addEventListener('loadProvider', ()=>{
+    //            
+    //        });
+    async function showProviderList() {
+        const providers = await fetchProviders();
+        // Llama a la función showProviders para mostrar la lista de proveedores en la tabla.
+        showProviders(providers);
     }
-    async function createProvider(Provider) {
-        const response = await fetch(`${urlProvider}/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(Provider),
-        });
-    
-        if (response.ok) {
-            const createdProvider = await response.text();
-            console.log(createdProvider);
-        } else {
-            console.error('Error al crear el medicamento:', response);
-            return null;
-        }
-    }
+    showProviderList();
+    //async function createProvider(Provider) {
+    //    const response = await fetch(`${urlProvider}/register`, {
+    //        method: 'POST',
+    //        headers: {
+    //            'Content-Type': 'application/json',
+    //        },
+    //        body: JSON.stringify(Provider),
+    //    });
+    //
+    //    if (response.ok) {
+    //        const createdProvider = await response.text();
+    //        console.log(createdProvider);
+    //    } else {
+    //        console.error('Error al crear el medicamento:', response);
+    //        return null;
+    //    }
+    //}
 
 //funcion que debería ir en el inicio(?)
 //funcion que debería ir en el inicio(?)
-fetchProviders();
+//fetchProviders();
     //eventos
     function showProviders(Providers) {
         Providers.forEach((provider) => {
@@ -68,18 +60,18 @@ fetchProviders();
     }
 
 
-        function fillSelectWithMedicines(providers) {
-            const selectProvider = document.getElementById("providerId");
-        
-            // Recorre la lista de medicamentos y crea opciones para el select
-            providers.forEach((provider) => {
-                const option = document.createElement("option");
-                option.value = provider.id; 
-                option.textContent = provider.name; 
-                selectProvider.appendChild(option);
-            });
-        }
-
+        //function fillSelectWithMedicines(providers) {
+        //    const selectProvider = document.getElementById("providerId");
+        //
+        //    // Recorre la lista de medicamentos y crea opciones para el select
+        //    providers.forEach((provider) => {
+        //        const option = document.createElement("option");
+        //        option.value = provider.id; 
+        //        option.textContent = provider.name; 
+        //        selectProvider.appendChild(option);
+        //    });
+        //}
+        //fillSelectWithMedicines(providersGlobal);
     //ProviderForm.addEventListener('submit', async function (event) {
     //    event.preventDefault();
     //    const name = document.getElementById('name').value;
