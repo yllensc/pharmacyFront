@@ -1,6 +1,5 @@
 import {end28,end35,end16,end24,end13,getProviders,end3 } from "../../Scripts/routes.js";
 
-import {getMedicines,end5} from "../../Scripts/routes.js";
 const options = {
     method: "GET",
     headers: {
@@ -20,17 +19,6 @@ const $tablaEnd13 = document.getElementById('infoEndpoint13');
 const $medicinesByprovider = document.getElementById("medicinesbyProvider");
 const $selectOptionsProvider = document.getElementById("selectProvider");
 
-//SELECTORES DOM - Sale
-const $selectOptionsMedicine = document.getElementById("selectMedicine");
-const $contEnd5 = document.getElementById("totalMedicines");
-//AddEventListener - Sale
-$selectOptionsMedicine.addEventListener('change', ()=>
-{
-    const idValue =  $selectOptionsMedicine.value;
-    console.log(idValue);
-
-    loadTotalMedicines(idValue);
-});
 
 //AddEventListener
 document.addEventListener("DOMContentLoaded", function () {
@@ -41,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadProvidersWithoutPurchases();
     loadProvider();
 
-    //sale
-    loadMedicine();
+   
 });
 $selectOptionsProvider.addEventListener('change', ()=>
 {
@@ -348,59 +335,6 @@ async function loadMedicinesByProvider(id)
         }else
         {
             $medicinesByprovider.innerHTML = `<p class="card-text">There is nothing here 👻</p>`;
-        }
-    }catch(error)
-    {
-        console.error(error);
-    }
-}
-
-
-//Sales fucntion
-async function loadMedicine(){
-    try
-    {
-        const response = await fetch(getMedicines,options);
-        if(!response.ok)
-        {
-            throw new Error(`Failed. State: ${response.status}`);
-        } 
-        const result = await response.json();
-        result.forEach((medicine) => {
-            const {id,name} = medicine;
-            
-            let html = `<option value="${id}">${name}</option>`;
-
-            $selectOptionsMedicine.insertAdjacentHTML('beforeend',html);
-        });
-    }catch(error)
-    {
-        console.error(error);
-    }
-}
-
-async function loadTotalMedicines(id)
-{
-    try
-    {
-        const response = await fetch(end5+`/${id}`,options);
-        if(!response.ok)
-        {
-            throw new Error(`Failed. State: ${response.status}`);
-        } 
-        const result = await response.json();
-        $contEnd5.innerHTML = "";
-        if(result.totalSales !=0)
-        {
-                
-                let html = ` <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
-                            <p class="card-text fs-3 text-center"> ${result.totalSales} </p>`;
-
-                $contEnd5.insertAdjacentHTML('beforeend',html);
-        }else
-        {
-            $contEnd5.innerHTML = `<p class="card-text"> <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
-            <p class="card-text fs-3 text-center">${result.totalSales}😿  </p>`;
         }
     }catch(error)
     {
