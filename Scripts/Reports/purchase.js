@@ -1,7 +1,6 @@
 import {end28,end35,end16,end24,end13,getProviders,end3 } from "../../Scripts/routes.js";
 
 import {getMedicines,end5} from "../../Scripts/routes.js";
-const purchaseHtml =  "../../Scripts/Reports/sale.js";
 const options = {
     method: "GET",
     headers: {
@@ -50,7 +49,7 @@ $selectOptionsProvider.addEventListener('change', ()=>
     const idValue =  $selectOptionsProvider.value;
     console.log(idValue);
 
-    loadMedicinesByProvider(nameValue)
+    loadMedicinesByProvider(idValue)
 });
 
 async function loadMoreMedicinesByProvider()
