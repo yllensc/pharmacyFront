@@ -1,13 +1,10 @@
-import { fetchProviders, fetchMedicines, urlMedicine } from '../UtilService/utilCRUDfetch.js';
+import { fetchProviders, fetchMedicines, urlMedicine } from '../Main/UtilService/utilCRUDfetch.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Elementos del DOM
     const medicineForm = document.getElementById('medicineForm');
     const tableMedicines = document.querySelector('.body-tableMedicines');
-    const createButton = document.getElementById('createButton');
-    const updateButton = document.getElementById('updateButton');
-    const deleteButton = document.getElementById('deleteButton');
-    const modalEditMedicine = document.getElementById('editMedicineModal');
+    const medicineFormEdit = document.getElementById('medicineFormEdit');
     const selectProvider = document.getElementById("providerId");
     // Función para crear un medicamento
     async function createMedicine(medicine) {
@@ -21,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
         if (response.ok) {
             const createdMedicine = await response.text();
-            console.log(createdMedicine);
+            return createdMedicine;
         } else {
             console.error('Error al crear el medicamento:', response);
             return null;
@@ -57,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
         if (response.ok) {
             const deleteMedicine = await response.text();
+            return deleteMedicine;
         } else {
             console.error('Error al eliminar el medicamento:', response);
             return null;
@@ -69,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // Función para mostrar los medicamentos en la tabla
     function showMedicines(medicines) {
+        tableMedicines.innerHTML = "";
         medicines.forEach((medicine) => {
             let rowHTML = `
                 <tr>
@@ -136,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     // Evento para enviar el formulario de edición de medicamento
-    const medicineFormEdit = document.getElementById('medicineFormEdit');
     medicineFormEdit.addEventListener('submit', async function (event) {
         event.preventDefault();
         const medicineId = medicineFormEdit.getAttribute('data-medicine-id');
