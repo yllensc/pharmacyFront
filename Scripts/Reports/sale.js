@@ -167,6 +167,8 @@ async function loadTotalMedicines(id) {
     const result = await response.json();
     $contEnd5.innerHTML = "";
     if (result.totalSales != 0) {
+        $imgEnd5.style.display = "none";
+
       let html = ` <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
                             <p class="card-text fs-3 text-center"> ${result.totalSales} units</p>`;
 
