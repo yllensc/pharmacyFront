@@ -463,7 +463,7 @@ async function loadPatientsWithoutPurchases()
             throw new Error(`Failed. State: ${response.status}`);
         } 
         const result = await response.json();
-        if(result == "")
+        if(result != "")
         {
                 
             result.forEach((patient,index) => {
