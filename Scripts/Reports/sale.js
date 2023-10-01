@@ -1,4 +1,4 @@
-import {getMedicines,end5,end8,end9, end21} from "../../Scripts/routes.js";
+import {getMedicines,end5,end8,end9, end21, end12} from "../../Scripts/routes.js";
 const options = {
     method: "GET",
     headers: {
@@ -23,10 +23,16 @@ const $titleModal = document.getElementById('exampleModalLabel');
 const $btnUnsold2023 = document.getElementById('btnUnsold');
 const $btnUnsoldNever = document.getElementById('btnUnsoldN');
 
+const $selectOptionsMedicine2 = document.getElementById("selectMedicine2");
+const $tableEnd12 = document.getElementById("infoEndpoint12");
+const $allTableEnd12 = document.getElementById("table12");
+const $contEnd12 = document.getElementById("unsoldMedicine");
+
 //AddEventListener - Sale
 document.addEventListener("DOMContentLoaded", function () {
     loadMedicine();
     loadTotalAllSales();
+    $allTableEnd12.style.display = "none";
 });
 $selectOptionsMedicine.addEventListener('change', ()=>
 {
@@ -39,7 +45,20 @@ $selectOptionsMedicine.addEventListener('change', ()=>
     $contEnd5.innerHTML=" ";
     return 
 });
-
+$selectOptionsMedicine2.addEventListener('change', ()=>
+{
+    const idValue =  $selectOptionsMedicine2.value;
+    if(idValue != "0")
+    {
+        $contEnd12.innerHTML=" ";
+        $tableEnd12.innerHTML=" ";
+        loadPatients(idValue);
+        return
+    }
+    $allTableEnd12.style.display = "none";
+   
+    return 
+});
 
 $btnUnsold2023.addEventListener('click', ()=>{
       const titleModal = "Unsold medicines in 2023 🤨🤨";
@@ -71,6 +90,8 @@ async function loadMedicine(){
             let html = `<option value="${id}">${name}</option>`;
 
             $selectOptionsMedicine.insertAdjacentHTML('beforeend',html);
+            $selectOptionsMedicine2.insertAdjacentHTML('beforeend',html);
+
         });
     }catch(error)
     {
@@ -195,6 +216,45 @@ async function loadUnsold(enpoint, titlemodal)
               });
         }
 
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function loadPatients(id)
+{
+    try
+    {
+        const response = await fetch(end12+`/${id}`,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        if(result != "")
+        {
+                
+            result.forEach((patient,index) => {
+                const {name,idenNumber,phoneNumber } = patient;
+                
+                let html = `<tr>
+                                <th scope="row">${index+1}</th>
+                                <td>${idenNumber}</td>
+                                <td>${name}</td>
+                                <td>${phoneNumber}</td>
+                            </tr>`;
+
+                $tableEnd12.insertAdjacentHTML('beforeend',html);
+            });
+
+            $allTableEnd12.style.display = 'inline-table';
+        }else
+        {
+            $allTableEnd12.style.display = 'none';
+            $contEnd12.innerHTML = `<p class="card-text">There is nothing here 👻</p>`;
+
+        }
     }catch(error)
     {
         console.error(error);
