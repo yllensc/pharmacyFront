@@ -122,7 +122,34 @@
       <!-- NAVBAR -->
 
       <!-- MAIN -->
-      <main></main>
+      <main>
+        <h1 class="title text-center">Medicines report</h1>
+        <!--Endpoint 1-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">
+              💊💊 Medicines with less than <input id="stock" type="number" style="width: 80px;" placeholder="50"> in stock.</p></div>
+            <br>
+            <div id="allAboveStock" class="text-center">All medications are above stock 🎉</div>
+            <table class="table" id="table1">
+              <thead>
+                <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Stock</th>
+                  <th scope="col">Provider</th>
+
+                </tr>
+              </thead>
+              <tbody id="infoEndpoint1">
+                <!--Se agrega dinámicamente-->
+              </tbody>
+            </table>
+          </div>
+        </div><br>
+        <!--Endpoint 1-->
+
+      </main>
       <!-- MAIN -->
     </section>
     <!--Bootstrap-->
