@@ -61,11 +61,9 @@ async function loadSecondData() {
         <div class="head">
           <div>
             <h2 class="fs-1">$${result.totalSales.toFixed(2)}</h2>
-            <p class="fs-3">${result.totalSales}</p>
+            <p class="fs-3">This is our profit until today</p>
           </div>
-        </div>
-        <span class="label fs-4">Stock: ${result.totalSales}</span>
-        <span class="label fs-5">Provider: ${result.totalSales}</span>`;
+        </div>`;
   } catch (error) {
     console.error(error);
   }
