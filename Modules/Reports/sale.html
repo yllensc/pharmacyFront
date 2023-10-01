@@ -106,23 +106,22 @@
         <div class="row">
           <div class="row cards" style="width: auto; margin: auto auto;">
             <!--Enpoint 8-->
-            <div class="card-block inicio-card" style="width: 18rem;">
+            <div class="card-block inicio-card" style="width: 15rem;">
               <div class="card-body text-center">
                 <img src="https://cdn-icons-png.flaticon.com/128/4269/4269620.png" class="card-img-top image-top"
                   alt="...">
                 <h5 class="card-title">Total of all sales 💵💵</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
-
                 <p class="card-text" id="totalSales"><!--Se llena de forma dinámica--></p>
               </div>
             </div>
             <!--Enpoint 8-->
             <!--Enpoint 5-->
-            <div class="card-block inicio-card" style="width: 18rem;">
+            <div class="card-block inicio-card" style="width: 15rem;">
               <div class="card-body text-center">
-                <img src="https://cdn-icons-png.flaticon.com/128/3638/3638933.png" class="card-img-top image-top"
+                <img src="https://cdn-icons-png.flaticon.com/128/3638/3638933.png" id="imgEnpoint5" class="card-img-top image-top"
                   alt="...">
-                <h5 class="card-title text-center">Total sales amount by medicine 📈</h5>
+                <h5 class="card-title text-center">Total sales amount by medicine 📈</h5><br>
                 <h6 class="card-subtitle mb-2 text-body-secondary">
                   <select id="selectMedicine" class="form-select" aria-label="Default select example">
                     <option value="0" selected>Select medicine</option>
@@ -133,7 +132,7 @@
             </div>
             <!--Enpoint 5-->
             <!--Enpoint 9,21-->
-            <div class="card-block inicio-card" style="width: 18rem;">
+            <div class="card-block inicio-card" style="width: 15rem;">
               <div class="card-body text-center carColumn">
                 <img src="https://cdn-icons-png.flaticon.com/128/3555/3555195.png" class="card-img-top image-top"
                   alt="...">
@@ -141,8 +140,6 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
                 <button class="btn btn-primary" id="btnUnsold">2023</button><br>
                 <button class="btn btn-primary" id="btnUnsoldN">Never</button>
-
-
               </div>
             </div>
             <!--Enpoint 9,21-->
@@ -171,8 +168,23 @@
               </div>
             </div>
             <!--MODAL-->
+
+            <!--Enpoint 15-->
+            <div id="enpoint15" class="card-block inicio-card" style="width: 15rem;">
+              <div class="card-body text-center">
+                <img src="https://cdn-icons-png.flaticon.com/128/7250/7250370.png" class="card-img-top image-top"
+                  alt="...">
+                <h5 class="card-title">Least sold medicines in 2023</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+                <div id="lessSoldMedicines">
+                  <!--Se llena de forma dinámica-->
+                </div>
+              </div>
+            </div>
+            <!--Enpoint 15-->
+
           </div>
-          <!--Enpoint 12-->
+          <!--Enpoint 12, 25-->
           <div class="card">
             <div class="card-body">
               <div class="card-header">🧍🧍‍♀️ Patients who have purchased a medicine.</p></div>
@@ -183,9 +195,8 @@
               <div class="text-center" id="botonesPatients" >
                 <button class="btn btn-primary" id="p2023">2023</button>
                 <button class="btn btn-primary" id="pAll">Any moment</button>
-
-              </div>
-              <div id="unsoldMedicine"><!--Se agrega dinámicamente--></div>
+              </div><br>
+              <div id="unsoldMedicine" class="text-center"><!--Se agrega dinámicamente--></div>
               <table class="table" id="table12">
                 <thead>
                   <tr>
@@ -201,7 +212,7 @@
               </table>
             </div>
           </div><br>
-          <!--Enpoitn 12-->
+          <!--Enpoitn 12,25-->
         </div>
     </main>
     <!-- MAIN -->

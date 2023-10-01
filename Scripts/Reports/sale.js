@@ -1,4 +1,4 @@
-import {getMedicines,end5,end8,end9, end21, end12,end25} from "../../Scripts/routes.js";
+import {getMedicines,end5,end8,end9, end21, end12,end25, end15} from "../../Scripts/routes.js";
 const options = {
     method: "GET",
     headers: {
@@ -9,6 +9,7 @@ const options = {
 //SELECTORES DOM - Sale
 const $selectOptionsMedicine = document.getElementById("selectMedicine");
 const $contEnd5 = document.getElementById("totalMedicines");
+const $imgEnd5 = document.getElementById("imgEnpoint5");
 const $contEnd8 = document.getElementById('totalSales');
 
 const myModal = new bootstrap.Modal(document.getElementById('modal'), {
@@ -31,12 +32,17 @@ const $contEnd12 = document.getElementById("unsoldMedicine");
 const $btn2023End25 = document.getElementById("p2023");
 const $btnAllEnd25 = document.getElementById("pAll");
 
+const $allEnp15 = document.getElementById("enpoint15");
+const $contEnd15 = document.getElementById("lessSoldMedicines");
 
 //AddEventListener - Sale
 document.addEventListener("DOMContentLoaded", function () {
     loadMedicine();
     loadTotalAllSales();
+    loadLessMedicine();
     $allTableEnd12.style.display = "none";
+    $allEnp15.style.display = "none";
+
 });
 $selectOptionsMedicine.addEventListener('change', ()=>
 {
@@ -46,6 +52,8 @@ $selectOptionsMedicine.addEventListener('change', ()=>
         loadTotalMedicines(idValue);
         return
     }
+    $imgEnd5.style.display = "inline-table";
+
     $contEnd5.innerHTML=" ";
 });
 
@@ -135,15 +143,15 @@ async function loadTotalMedicines(id)
         $contEnd5.innerHTML = "";
         if(result.totalSales !=0)
         {
-                
+                $imgEnd5.style.display = "none";
                 let html = ` <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
-                            <p class="card-text fs-3 text-center"> ${result.totalSales} </p>`;
+                            <p class="card-text fs-3 text-center"> ${result.totalSales} units</p>`;
 
                 $contEnd5.insertAdjacentHTML('beforeend',html);
         }else
         {
             $contEnd5.innerHTML = `<p class="card-text"> <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
-            <p class="card-text fs-3 text-center">${result.totalSales}😿  </p>`;
+            <p class="card-text fs-3 text-center">${result.totalSales} units 😿  </p>`;
         }
     }catch(error)
     {
@@ -277,6 +285,36 @@ async function loadPatients(id, endp)
             $allTableEnd12.style.display = 'none';
             $contEnd12.innerHTML = `<p class="card-text">There is nothing here 👻</p>`;
 
+        }
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+async function loadLessMedicine()
+{
+    try
+    {
+        const response = await fetch(end15,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        if(result != "" )
+        {
+            $allEnp15.style.display = "flex";
+           /* if(result.length ==1)
+            {} //Falta el else, si la cantidad es mayor a 1*/
+
+            let html = ` <p class="card-text fs-3 text-center text-danger"> ${result[0].idMedicine} </p>
+                        <p class="card-text fs-5 text-center" style="margin-top:0; margin-bottom:0;"> ${result[0].totalQuantity} units sold </p>`;
+
+            $contEnd15.insertAdjacentHTML('beforeend',html);
+                
+        }else
+        {
+            $allEnp15.style.display = 'none';
         }
     }catch(error)
     {
