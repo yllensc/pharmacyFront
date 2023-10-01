@@ -1,4 +1,4 @@
-import {getMedicines,end5,end8,end9, end21, end12,end25, end15} from "../../Scripts/routes.js";
+import {getMedicines,end5,end8,end9, end21, end12,end25, end15,end33,end36} from "../../Scripts/routes.js";
 const options = {
     method: "GET",
     headers: {
@@ -35,11 +35,18 @@ const $btnAllEnd25 = document.getElementById("pAll");
 const $allEnp15 = document.getElementById("enpoint15");
 const $contEnd15 = document.getElementById("lessSoldMedicines");
 
+const $tableEnd33= document.getElementById("infoEndpoint33");
+
+const $selectOptionsQuarter = document.getElementById("selectQuarter");
+const $totalQuarter = document.getElementById("totalQuarter");
+const $totalQuarterMedicine = document.getElementById("totalQuarterMed");
+
 //AddEventListener - Sale
 document.addEventListener("DOMContentLoaded", function () {
     loadMedicine();
     loadTotalAllSales();
     loadLessMedicine();
+    loadSpentByPatient();
     $allTableEnd12.style.display = "none";
     $allEnp15.style.display = "none";
 
@@ -100,6 +107,10 @@ $btnAllEnd25.addEventListener("click", ()=>{
     }
     $allTableEnd12.style.display = "none";
 
+});
+$selectOptionsQuarter.addEventListener('change', ()=>{
+    const idValue =  $selectOptionsQuarter.value;
+    loadTotalMedicineQuarter(idValue)
 });
 
 
@@ -315,6 +326,84 @@ async function loadLessMedicine()
         }else
         {
             $allEnp15.style.display = 'none';
+        }
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function loadSpentByPatient()
+{
+    try
+    {
+        const response = await fetch(end33,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        if(result != "")
+        {
+                
+            result.forEach((patient,index) => {
+                const {name,idenNumber,totalSpent } = patient;
+                
+                let html = `<tr>
+                                <th scope="row">${index+1}</th>
+                                <td>${idenNumber}</td>
+                                <td>${name}</td>
+                                <td>${totalSpent}</td>
+                            </tr>`;
+
+                $tableEnd33.insertAdjacentHTML('beforeend',html);
+            });
+
+        }else
+        {
+            $tableEnd33.innerHTML = `<p class="card-text">There is nothing here 👻</p>`;
+
+        }
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function loadTotalMedicineQuarter(id)
+{
+    try
+    {
+        console.log(end36+`/${id}`);
+        const response = await fetch(end36+`/${id}`,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+
+        $totalQuarterMedicine.innerHTML = "";
+        if(result != "")
+        {
+            $totalQuarter.innerHTML = `<p class="card-text fs-3 text-center"> <b>TOTAL:</b> ${result.total} units 😿</p>`;
+
+            result.listMedicines.forEach((medicine) => {
+                const {nameMedicine,totalQuantity} = medicine;
+                
+                let html = `<div class="card-block" style="width: 15rem;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/918/918330.png" class="card-img-top" alt="drug">
+                            <div class="card-body">
+                            <p class="card-text"> <b>Name:</b> ${nameMedicine}   </p>
+                            <p class="card-text"> <b>Total sold:</b> ${totalQuantity} </p>
+                            </div>
+                        </div>`;
+
+                $totalQuarterMedicine.insertAdjacentHTML('beforeend',html);
+            });
+        }else
+        {
+            $totalQuarter.innerHTML = `<p class="card-text fs-3 text-center"> <b>TOTAL:</b> O units 😿</p>`;
+            $totalQuarterMedicine.innerHTML = `<p class="card-text">There is nothing here 👻</p>`;
         }
     }catch(error)
     {

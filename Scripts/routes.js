@@ -26,7 +26,8 @@ export const end15 = "http://localhost:5223/api/pharmacy/Sale/lessSoldMedicine";
 export const end14 = "http://localhost:5223/api/pharmacy/Sale/month";
 export const end25 = "http://localhost:5223/api/pharmacy/Sale/patientsByMedicine2023";
 export const end12 = "http://localhost:5223/api/pharmacy/Sale/patientsByMedicine";
-
+export const end33 = "http://localhost:5223/api/pharmacy/Sale/patientTotalSpent";
+export const end36 = "http://localhost:5223/api/pharmacy/Sale/totalMedicinesQuarter";
 
 export const end10 = "http://localhost:5223/api/pharmacy/Medicine/moreExpensive";
 
