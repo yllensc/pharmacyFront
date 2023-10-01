@@ -13,31 +13,31 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
-    <script src="main.js" async></script>
-    <script src="index.js" defer type="module"></script>
+    <link rel="stylesheet" href="../../style.css" />
+    <script src="../../main.js" async></script>
+    <script src="../../Scripts/Main/sale.js" defer type="module"></script>
     <title>PharmacyCampus</title>
   </head>
   <body>
     <!-- SIDEBAR -->
     <section id="sidebar">
-      <a href="./index.html" class="brand"
+      <a href="../../index.html" class="brand"
         ><i class="bx bx-plus-medical icon"></i> Pharmacy</a
       >
       <ul class="side-menu">
         <li>
-          <a href="./index.html" class="active"
+          <a href="../../index.html"
             ><i class="bx bxs-dashboard icon"></i> Dashboard</a
           >
         </li>
         <li class="divider" data-text="main">Main</li>
         <li>
-          <a href="./Modules/Main/sale.html"
+          <a href="./sale.html" class="active"
             ><i class="bx bxs-inbox icon"></i> Sale
           </a>
         </li>
         <li>
-          <a href="./Modules/Main/purchase.html"
+          <a href="./purchase.html"
             ><i class="bx bxs-inbox icon"></i> Purchase
           </a>
         </li>
@@ -48,45 +48,45 @@
           ></a>
           <ul class="side-dropdown">
             <li>
-              <a href="./Modules/Main/medicine.html">Medicines</a>
+              <a href="./medicine.html">Medicines</a>
             </li>
-            <li><a href="./Modules/Main/provider.html">Providers</a></li>
-            <li><a href="./Modules/Main/patient.html">Patients</a></li>
+            <li><a href="./provider.html">Providers</a></li>
+            <li><a href="./patient.html">Patients</a></li>
           </ul>
         </li>
         <li class="divider" data-text="Informe">Reports</li>
         <li>
-          <a href="./Modules/Reports/sale.html"
+          <a href="../../Modules/Reports/sale.html"
             ><i class="bx bxs-inbox icon"></i>Sales</a
           >
         </li>
         <li>
-          <a href="./Modules/Reports/purchase.html"
+          <a href="../../Modules/Reports/purchase.html"
             ><i class="bx bxs-inbox icon"></i>Purchases</a
           >
         </li>
         <li>
-          <a href="./Modules/Reports/profits.html"
+          <a href="../../Modules/Reports/profits.html"
             ><i class="bx bxs-inbox icon"></i>Profits</a
           >
         </li>
         <li>
-          <a href="./Modules/Reports/medicines.html"
+          <a href="../../Modules/Reports/medicines.html"
             ><i class="bx bxs-inbox icon"></i>Medicines</a
           >
         </li>
         <li>
-          <a href="./Modules/Reports/employees.html"
+          <a href="../../Modules/Reports/employees.html"
             ><i class="bx bxs-inbox icon"></i>Employees</a
           >
         </li>
         <li>
-          <a href="./Modules/Reports/providers.html"
+          <a href="../../Modules/Reports/providers.html"
             ><i class="bx bxs-inbox icon"></i>Providers</a
           >
         </li>
         <li>
-          <a href="./Modules/Reports/patients.html"
+          <a href="../../Modules/Reports/patients.html"
             ><i class="bx bxs-inbox icon"></i>Patients</a
           >
         </li>
@@ -125,62 +125,55 @@
 
       <!-- MAIN -->
       <main>
-        <h1 class="title">Dashboard</h1>
-        <div class="info-data">
-          <div class="card" id="firts-data"></div>
-          <div class="card" id="second-data"></div>
-          <div class="card" id="third-data">
-            <div class="text-end pb-1">
-              <span class="badge bg-info rounded-3 fw-semibold"
-                >Total in Sales</span
-              >
-            </div>
-            <div class="head">
-              <div class="form-group">
-                <select id="monthSelect" class="form-control"></select>
-              </div>
-            </div>
-            <span class="label fs-3" id="label1"></span>
-          </div>
-          <div class="card" id="fourth-data"></div>
+        <div class="container mt-5">
+            <h1 class="mb-4">Sale</h1>
+            <form id="saleForm">
+                <div class="mb-3">
+                    <label for="employee" class="form-label">Employee:</label>
+                    <select class="form-select" name="employee" id="employee">
+                        <!-- Se llena dinamicamente -->
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="patient" class="form-label">Patient:</label>
+                    <select class="form-select" name="patient" id="patient">
+                        <!-- Se llena dinamicamente -->
+                    </select>
+                </div>
+                
+                <label for="medicine">Medicines:</label>
+<select class="form-select" name="medicine" id="medicine" multiple>
+  <!-- Se llena dinamicamente -->
+</select>
+
+<div id="medicinePrice">
+  <!-- Se llena dinamicamente -->
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Medicamento</th>
+      <th>Cantidad</th>
+    </tr>
+  </thead>
+  <tbody id="medicineQuantities">
+    <!-- Esta sección se llenará dinámicamente -->
+  </tbody>
+</table>
+
+
+                
+                
+    
+                <div class="mb-3">
+                    <label for="total" class="form-label">Total:</label>
+                    <input type="number" class="form-control" name="total" id="total" min="1" readonly>
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Register Sale</button>
+            </form>
         </div>
-        <div class="data">
-          <div class="content-data">
-            <div class="head">
-              <h3>Sales Report</h3>
-            </div>
-            <!-- contenido -->
-            <div class="table-responsive">
-              <table
-                class="table table-striped text-center"
-                style="width: 100%"
-              >
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Medicine</th>
-                    <th>Patient</th>
-                    <th>Employee</th>
-                    <th>Quantity</th>
-                    <th>Prescription</th>
-                  </tr>
-                </thead>
-                <tbody id="tableSalesBody"></tbody>
-                <tfoot>
-                  <tr>
-                    <th>Id</th>
-                    <th>Medicine</th>
-                    <th>Patient</th>
-                    <th>Employee</th>
-                    <th>Quantity</th>
-                    <th>Prescription</th>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div id="chart"></div>
       </main>
       <!-- MAIN -->
     </section>
