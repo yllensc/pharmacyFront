@@ -22,10 +22,10 @@ export const end5 = "http://localhost:5223/api/pharmacy/Sale/totalSaleOneMedicin
 export const end8 = "http://localhost:5223/api/pharmacy/Sale/gainSales";
 export const end9 = "http://localhost:5223/api/pharmacy/Sale/unsoldMedicines2023";
 export const end21 = "http://localhost:5223/api/pharmacy/Sale/unsoldMedicines";
-export const end12 = "http://localhost:5223/api/pharmacy/Sale/lessSoldMedicine";
+export const end15 = "http://localhost:5223/api/pharmacy/Sale/lessSoldMedicine";
 export const end14 = "http://localhost:5223/api/pharmacy/Sale/month";
-export const end15 = "http://localhost:5223/api/pharmacy/Sale/patientsByMedicine2023";
-export const end25 = "http://localhost:5223/api/pharmacy/Sale/patientsByMedicine";
+export const end25 = "http://localhost:5223/api/pharmacy/Sale/patientsByMedicine2023";
+export const end12 = "http://localhost:5223/api/pharmacy/Sale/patientsByMedicine";
 
 
 export const end10 = "http://localhost:5223/api/pharmacy/Medicine/moreExpensive";

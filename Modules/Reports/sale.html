@@ -92,11 +92,11 @@
     </section>
     <!-- SIDEBAR -->
 
-    <section id="content">
-      <!-- NAVBAR -->
-      <nav id="navbar">
-        <i class="bx bx-menu toggle-sidebar"></i>
-        <form action="#"></form>
+  <section id="content">
+    <!-- NAVBAR -->
+    <nav id="navbar">
+      <i class="bx bx-menu toggle-sidebar"></i>
+      <form action="#"></form>
 
         <span class="divider"></span>
         <div class="profile">
@@ -121,9 +121,9 @@
       </nav>
       <!-- NAVBAR -->
 
-      <!-- MAIN -->
-      <main>
-        <h1 class="title text-center">Sales report</h1>
+    <!-- MAIN -->
+    <main>
+      <h1 class="title text-center">Sales report</h1>
 
         <div class="container">
           <div class="row">
@@ -241,20 +241,66 @@
                 </div>
               </div>
               <!--MODAL-->
+            <!--MODAL-->
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><!--Se llena dinámicamente --></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                      id="closeModal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table" id="tableModal">
+                      <!--Se llena dinámicamente-->
+                    </table>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                      id="closeModal">Close</button>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!--MODAL-->
           </div>
-        </div>  
-      </main>
-      <!-- MAIN -->
-    </section>
-    <!--Bootstrap-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
-    <!--SweetAlert2-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  </body>
+          <!--Enpoint 12-->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-header">🧍🧍‍♀️ Patients who have purchased a medicine.</p></div>
+              <select id="selectMedicine2" class="form-select" aria-label="Default select example">
+                <option value="0" selected>Select medicine</option>
+              </select>
+              <br>
+              <div id="unsoldMedicine"><!--Se agrega dinámicamente--></div>
+              <table class="table" id="table12">
+                <thead>
+                  <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Identification Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Telephone</th>
+                  </tr>
+                </thead>
+                <tbody id="infoEndpoint12">
+                  <!--Se agrega dinámicamente-->
+                </tbody>
+              </table>
+            </div>
+          </div><br>
+          <!--Enpoitn 12-->
+        </div>
+    </main>
+    <!-- MAIN -->
+  </section>
+  <!--Bootstrap-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <!--SweetAlert2-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</body>
+
 </html>
