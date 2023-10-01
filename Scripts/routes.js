@@ -10,7 +10,6 @@ export const end3 = "http://localhost:5223/api/pharmacy/Purchase/medicinesPurcha
 export const end13 = "http://localhost:5223/api/pharmacy/Purchase/providersWithoutPurchases";
 
 // PROVIDER
-export const end4 = "http://localhost:5223/api/pharmacy/Provider/totalProviders";
 export const end16 = "http://localhost:5223/api/pharmacy/Provider/gain2023";
 export const end24 = "http://localhost:5223/api/pharmacy/Provider/moreQuantityMedicines";
 export const end28 = "http://localhost:5223/api/pharmacy/Provider/totalProviders";
@@ -19,6 +18,7 @@ export const end35 = "http://localhost:5223/api/pharmacy/Provider/aleast5medicin
 // SALES
 export const getSales = "http://localhost:5223/api/pharmacy/Sale";
 export const postManySales = "http://localhost:5223/api/pharmacy/Sale/range";
+export const end4 = "http://localhost:5223/api/pharmacy/Sale/recipes";
 export const end5 = "http://localhost:5223/api/pharmacy/Sale/totalSaleOneMedicine";
 export const end8 = "http://localhost:5223/api/pharmacy/Sale/gainSales";
 export const end9 = "http://localhost:5223/api/pharmacy/Sale/unsoldMedicines2023";
