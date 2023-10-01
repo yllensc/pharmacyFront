@@ -125,81 +125,50 @@
     <main>
       <h1 class="title text-center">Sales report</h1>
 
-        <div class="container">
-          <div class="row">
-            <div class="row cards" style="width: auto; margin: auto auto">
-              <!--Enpoint 8-->
-              <div class="card-block inicio-card" style="width: 18rem">
-                <div class="card-body text-center">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/4269/4269620.png"
-                    class="card-img-top image-top"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Total of all sales 💵💵</h5>
-                  <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+      <div class="container">
+        <div class="row">
+          <div class="row cards" style="width: auto; margin: auto auto;">
+            <!--Enpoint 8-->
+            <div class="card-block inicio-card" style="width: 18rem;">
+              <div class="card-body text-center">
+                <img src="https://cdn-icons-png.flaticon.com/128/4269/4269620.png" class="card-img-top image-top"
+                  alt="...">
+                <h5 class="card-title">Total of all sales 💵💵</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
 
-                  <p class="card-text" id="totalSales">
-                    <!--Se llena de forma dinámica-->
-                  </p>
-                </div>
+                <p class="card-text" id="totalSales"><!--Se llena de forma dinámica--></p>
               </div>
-              <!--Enpoint 8-->
-              <!--Enpoint 5-->
-              <div class="card-block inicio-card" style="width: 18rem">
-                <div class="card-body text-center">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/3638/3638933.png"
-                    class="card-img-top image-top"
-                    alt="..."
-                  />
-                  <h5 class="card-title text-center">
-                    Total sales amount by medicine 📈
-                  </h5>
-                  <h6 class="card-subtitle mb-2 text-body-secondary">
-                    <select
-                      id="selectMedicine"
-                      class="form-select"
-                      aria-label="Default select example"
-                    >
-                      <option value="0" selected>Select medicine</option>
-                    </select>
-                  </h6>
-                  <p class="card-text" id="totalMedicines">
-                    <!--Se llena de forma dinámica-->
-                  </p>
-                </div>
+            </div>
+            <!--Enpoint 8-->
+            <!--Enpoint 5-->
+            <div class="card-block inicio-card" style="width: 18rem;">
+              <div class="card-body text-center">
+                <img src="https://cdn-icons-png.flaticon.com/128/3638/3638933.png" class="card-img-top image-top"
+                  alt="...">
+                <h5 class="card-title text-center">Total sales amount by medicine 📈</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">
+                  <select id="selectMedicine" class="form-select" aria-label="Default select example">
+                    <option value="0" selected>Select medicine</option>
+                  </select>
+                </h6>
+                <p class="card-text" id="totalMedicines"> <!--Se llena de forma dinámica--></p>
               </div>
-              <!--Enpoint 5-->
-              <!--Enpoint 9,21-->
-              <div class="card-block inicio-card" style="width: 18rem">
-                <div class="card-body text-center carColumn">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/3555/3555195.png"
-                    class="card-img-top image-top"
-                    alt="..."
-                  />
-                  <h5 class="card-title text-center">Unsold medicines</h5>
-                  <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
-                  <button
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal"
-                    class="btn btn-primary"
-                    id="btnUnsold"
-                  >
-                    2023</button
-                  ><br />
-                  <button
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal"
-                    class="btn btn-primary"
-                    id="btnUnsoldN"
-                  >
-                    Never
-                  </button>
-                </div>
+            </div>
+            <!--Enpoint 5-->
+            <!--Enpoint 9,21-->
+            <div class="card-block inicio-card" style="width: 18rem;">
+              <div class="card-body text-center carColumn">
+                <img src="https://cdn-icons-png.flaticon.com/128/3555/3555195.png" class="card-img-top image-top"
+                  alt="...">
+                <h5 class="card-title text-center">Unsold medicines</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+                <button class="btn btn-primary" id="btnUnsold">2023</button><br>
+                <button class="btn btn-primary" id="btnUnsoldN">Never</button>
+
+
               </div>
-              <!--Enpoint 9,21-->
+            </div>
+            <!--Enpoint 9,21-->
 
               <!--MODAL-->
               <div
@@ -264,33 +233,138 @@
               </div>
             </div>
             <!--MODAL-->
-          </div>
-          <!--Enpoint 12-->
-          <div class="card">
-            <div class="card-body">
-              <div class="card-header">🧍🧍‍♀️ Patients who have purchased a medicine.</p></div>
-              <select id="selectMedicine2" class="form-select" aria-label="Default select example">
-                <option value="0" selected>Select medicine</option>
-              </select>
-              <br>
-              <div id="unsoldMedicine"><!--Se agrega dinámicamente--></div>
-              <table class="table" id="table12">
-                <thead>
-                  <tr>
-                    <th scope="col">N°</th>
-                    <th scope="col">Identification Number</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Telephone</th>
-                  </tr>
-                </thead>
-                <tbody id="infoEndpoint12">
-                  <!--Se agrega dinámicamente-->
-                </tbody>
-              </table>
+
+            <!--Enpoint 15-->
+            <div id="enpoint15" class="card-block inicio-card" style="width: 15rem;">
+              <div class="card-body text-center">
+                <img src="https://cdn-icons-png.flaticon.com/128/7250/7250370.png" class="card-img-top image-top"
+                  alt="...">
+                <h5 class="card-title">Least sold medicines in 2023</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+                <div id="lessSoldMedicines">
+                  <!--Se llena de forma dinámica-->
+                </div>
+              </div>
             </div>
-          </div><br>
-          <!--Enpoitn 12-->
+            <!--Enpoint 15-->
         </div>
+      </div>
+      <!--Enpoint 12, 25-->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-header">🧍🧍‍♀️ Patients who have purchased a medicine.</p></div>
+          <select id="selectMedicine2" class="form-select" aria-label="Default select example">
+            <option value="0" selected>Select medicine</option>
+          </select>
+          <br>
+          <div class="text-center" id="botonesPatients" >
+            <button class="btn btn-primary" id="p2023">2023</button>
+            <button class="btn btn-primary" id="pAll">Any moment</button>
+          </div><br>
+          <div id="unsoldMedicine" class="text-center"><!--Se agrega dinámicamente--></div>
+          <table class="table" id="table12">
+            <thead>
+              <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Identification Number</th>
+                <th scope="col">Name</th>
+                <th scope="col">Telephone</th>
+              </tr>
+            </thead>
+            <tbody id="infoEndpoint12">
+              <!--Se agrega dinámicamente-->
+            </tbody>
+          </table>
+        </div>
+      </div><br>
+      <!--Enpoitn 12,25-->
+    <div class="order">
+      <div class="item1" style="margin: auto auto auto auto;">
+        <!--Enpoint 22-->
+        <div class="card-block inicio-card" style="width: 15rem; margin: auto auto auto auto;">
+          <div class="card-body text-center">
+            <img src="https://cdn-icons-png.flaticon.com/128/9789/9789319.png" class="card-img-top image-top"
+              alt="...">
+            <h5 class="card-title">Patient who has spent the most money in 2023 💵</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+            <p class="card-text" id="patientMoreSpent"><!--Se llena de forma dinámica--></p>
+          </div>
+        </div>  
+        <!--Enpoint 22-->
+      </div>
+      <div class="item2">
+        <!--Entpoint 36-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">
+              <p class="text-end">
+                💊💊 Total medications sold per quarter <b>2023</b></p>
+            </div>
+            <select id="selectQuarter" class="form-select" aria-label="Default select example">
+              <option value="0" selected>Select quarter</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            <br>
+            <p id="totalQuarter"><!--Se agrega dinámicamente--></p>
+            <div class="container">
+              <div class="row">
+                <div class="row cards" style="width: auto; margin: auto auto;" id="totalQuarterMed">
+                  <!--Se agrega dinámicamente-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+        <!--Enpoint 36-->
+
+        <!--Endpoint 33-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">🧾🧾 Total spent by each patient <b>2023</b></p></div>
+              <table class="table" id="table12">
+              <thead>
+                <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Identification Number</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Telephone</th>
+                </tr>
+              </thead>
+              <tbody id="infoEndpoint33">
+                <!--Se agrega dinámicamente-->
+              </tbody>
+            </table>
+          </div>
+        </div><br>
+        <!--Endpoint 33-->
+      </div>  
+    </div>
+    <!--Endpoint 30-->
+    <div class="card">
+      <div class="card-body">
+        <div class="card-header">🧍🧍‍♀️ Patients who have not purchased any medication in <b>2023</b></p></div>
+          <div id="allPatientPurchased" class="text-center"><p class="card-text text-center">All patients have purchases 🎉🎉</p></div>
+          <table class="table" id="table30">
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Identification Number</th>
+              <th scope="col">Name</th>
+              <th scope="col">Telephone</th>
+            </tr>
+          </thead>
+          <tbody id="infoEndpoint30">
+            <!--Se agrega dinámicamente-->
+          </tbody>
+        </table>
+      </div>
+    </div><br>
+    <!--Endpoint 30-->
+
+      
     </main>
     <!-- MAIN -->
   </section>

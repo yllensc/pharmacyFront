@@ -619,3 +619,15 @@ main .btn-send:hover {
     flex-direction: column;
     align-items: center;
 }
+
+/*Styles sales*/
+.order{
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: auto auto;
+}
+.item1{
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+
