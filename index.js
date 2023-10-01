@@ -41,7 +41,7 @@ async function loadFirstData() {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 async function loadSecondData() {
   const secondData = document.querySelector("#second-data");
@@ -69,7 +69,7 @@ async function loadSecondData() {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 async function loadThirdData(value) {
   try {
@@ -86,7 +86,7 @@ async function loadThirdData(value) {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 async function loadFourthData() {
   const fourthData = document.querySelector("#fourth-data");
@@ -113,7 +113,7 @@ async function loadFourthData() {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 async function loadTable() {
   const tableSalesBody = document.querySelector("#tableSalesBody");
@@ -124,12 +124,14 @@ async function loadTable() {
       throw new Error(`Failed. State: ${response.status}`);
     }
     const result = await response.json();
+    console.log(result);
     const columns = [
-      "medicineId",
-      "patientId",
-      "employeeId",
-      "saleQuantity",
-      "prescription",
+      "saleId",
+      "employeeName",
+      "patientName",
+      "medicineName",
+      "quantity",
+      "prescription"
     ];
     result.forEach((rowData) => {
       const row = document.createElement("tr");
@@ -148,7 +150,7 @@ async function loadTable() {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 function loadSelects() {
   const months = {
@@ -177,8 +179,7 @@ function loadSelects() {
     option.textContent = monthName;
     monthSelect.appendChild(option);
   }
-};
-
+}
 
 // Datos para el gráfico (puedes personalizar estos datos según tus necesidades)
 // const options = {
