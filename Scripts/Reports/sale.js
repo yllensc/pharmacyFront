@@ -11,6 +11,12 @@ const $selectOptionsMedicine = document.getElementById("selectMedicine");
 const $contEnd5 = document.getElementById("totalMedicines");
 const $contEnd8 = document.getElementById('totalSales');
 
+const myModal = new bootstrap.Modal(document.getElementById('modal'), {
+    keyboard: false
+});
+const $closeMyModal = document.getElementById('closeModal');
+
+
 const $tableModal = document.getElementById('tableModal');
 const $titleModal = document.getElementById('exampleModalLabel');
 
@@ -33,13 +39,19 @@ $selectOptionsMedicine.addEventListener('change', ()=>
     $contEnd5.innerHTML=" ";
     return 
 });
-$btnUnsold2023.addEventListener('click', ()=>{
-    const titleModal = "Unsold medicines in 2023 🤨🤨";
 
-    loadUnsold(end9,titleModal);
-}
-);
-//$btnUnsold2023.addEventListener('click', loadUnsoldNever());
+
+$btnUnsold2023.addEventListener('click', ()=>{
+      const titleModal = "Unsold medicines in 2023 🤨🤨";
+      loadUnsold(end9,titleModal);
+});
+$btnUnsoldNever.addEventListener('click', ()=>{
+    const titleModal = "Unsold medicines never 💀💀";
+    loadUnsold(end21,titleModal);
+});
+$closeMyModal.addEventListener('click', () => {
+    myModal.hide();
+});
 
 //FUNCIONES
 
@@ -140,8 +152,8 @@ async function loadUnsold(enpoint, titlemodal)
             $titleModal.innerHTML= titlemodal;
             $tableModal.innerHTML = "";
             let table = `<thead>
-                            <th scope="row">N°</th>
                             <tr>
+                            <th scope="row">N°</th>
                             <th scope="col"></th>
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
@@ -152,7 +164,7 @@ async function loadUnsold(enpoint, titlemodal)
                         <tbody id="listMedicines">
                         </tbody>`;
             $tableModal.insertAdjacentHTML('beforeend',table);
-            const $modal= document.getElementById('listMedicines');
+            const $modaLMed= document.getElementById('listMedicines');
 
             result.forEach((medicine, index)=>{
                const {name, price, stock} = medicine;
@@ -166,9 +178,12 @@ async function loadUnsold(enpoint, titlemodal)
                                     <td>${stock}</td>
 
                                     </tr>`;
-                $modal.insertAdjacentHTML('beforeend',htmlModal);
+                $modaLMed.insertAdjacentHTML('beforeend',htmlModal);
+               
+                myModal.show();
 
             });
+
         }else
         {
             Swal.fire({
