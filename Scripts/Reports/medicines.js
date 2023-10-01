@@ -95,11 +95,57 @@ async function loadInfoProviders()
                             <b>Email:</b>${email} </p>
                             <p class="card-subtitle mb-2 text-start">
                             <b>Address:</b>${address} </p>
-                            <button class="btn btn-primary" id="medicine${id}">Medicines</button><br>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicine${id}" >Medicines</button><br>
                             </div>
                         </div>`;
-
                 $contEnd2.insertAdjacentHTML('beforeend',html);
+
+                let modal = ` <!-- Modal -->
+                                <div class="modal fade" id="medicine${id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Provider: ${name}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <h3 class="text-center" >List Medicines</h3>
+                                        <table class="table" id="table12">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">N°</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Stock</th>
+                                                <th scope="col">Price</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="infoEndpoint1ID${id}">
+                                            <!--Se agrega dinámicamente-->
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->`;
+                $contEnd2.insertAdjacentHTML('beforeend',modal);
+
+                medicinesList.forEach((medicines,index)=> 
+                {
+                   const {name, stock, price} = medicines;
+                    let html = `<tr>
+                                <th scope="row">${index+1}</th>
+                                <td>${name}</td>
+                                <td>${price}</td>
+                                <td>${stock}</td>
+                            </tr>`;
+
+                    document.getElementById(`infoEndpoint1ID${id}`).insertAdjacentHTML('beforeend',html);
+                });
+
             });
 
             
