@@ -1,4 +1,4 @@
-import {getMedicines,end5,end8,end9, end21, end12,end25, end15,end33,end36} from "../../Scripts/routes.js";
+import {getMedicines,end5,end8,end9, end21, end12,end25, end15,end33,end36, end22, end30} from "../../Scripts/routes.js";
 const options = {
     method: "GET",
     headers: {
@@ -41,6 +41,12 @@ const $selectOptionsQuarter = document.getElementById("selectQuarter");
 const $totalQuarter = document.getElementById("totalQuarter");
 const $totalQuarterMedicine = document.getElementById("totalQuarterMed");
 
+const $contEnd22 = document.getElementById("patientMoreSpent");
+
+const $allTableEnd30 = document.getElementById("table30");
+const $tableEnd30 = document.getElementById("infoEndpoint30");
+const $allPatientPurchased = document.getElementById("allPatientPurchased");
+
 //AddEventListener - Sale
 document.addEventListener("DOMContentLoaded", function () {
     loadMedicine();
@@ -49,6 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
     loadSpentByPatient();
     $allTableEnd12.style.display = "none";
     $allEnp15.style.display = "none";
+    loadPatientMoreSpent();
+    $allPatientPurchased.style.display="none";
+    loadPatientsWithoutPurchases();
+
 
 });
 $selectOptionsMedicine.addEventListener('change', ()=>
@@ -110,12 +120,17 @@ $btnAllEnd25.addEventListener("click", ()=>{
 });
 $selectOptionsQuarter.addEventListener('change', ()=>{
     const idValue =  $selectOptionsQuarter.value;
+    if(idValue == "0")
+    {
+        $totalQuarter.innerHTML=" ";
+        $totalQuarterMedicine.innerHTML=" ";
+        return;
+    }
     loadTotalMedicineQuarter(idValue)
 });
 
 
 //FUNCIONES
-
 
 async function loadMedicine(){
     try
@@ -385,7 +400,7 @@ async function loadTotalMedicineQuarter(id)
         $totalQuarterMedicine.innerHTML = "";
         if(result != "")
         {
-            $totalQuarter.innerHTML = `<p class="card-text fs-3 text-center"> <b>TOTAL:</b> ${result.total} units 😿</p>`;
+            $totalQuarter.innerHTML = `<p class="card-text fs-3 text-center"> <b>TOTAL:</b> ${result.total} units </p>`;
 
             result.listMedicines.forEach((medicine) => {
                 const {nameMedicine,totalQuantity} = medicine;
@@ -404,6 +419,71 @@ async function loadTotalMedicineQuarter(id)
         {
             $totalQuarter.innerHTML = `<p class="card-text fs-3 text-center"> <b>TOTAL:</b> O units 😿</p>`;
             $totalQuarterMedicine.innerHTML = `<p class="card-text">There is nothing here 👻</p>`;
+        }
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function loadPatientMoreSpent()
+{
+    try
+    {
+        const response = await fetch(end22,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        $contEnd22.innerHTML = "";
+        
+        let html = ` <p class="card-text fs-3 text-center"> <b>${result[0].name} 🎉</b>  </p>
+                    <p class="card-text fs-4 text-center"> <b>Total spent:</b>  </p>
+                    <p class="card-text fs-3 text-center"> ${result[0].totalSpent} </p>`;
+
+        $contEnd22.insertAdjacentHTML('beforeend',html);
+       //Faltaría mostrar si varios pacientes gastaron lo mismo...
+       
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+
+async function loadPatientsWithoutPurchases()
+{
+    try
+    {
+        console.log(end30)
+        const response = await fetch(end30,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        if(result == "")
+        {
+                
+            result.forEach((patient,index) => {
+                const {name,idenNumber,phoneNumber } = patient;
+                
+                let html = `<tr>
+                                <th scope="row">${index+1}</th>
+                                <td>${idenNumber}</td>
+                                <td>${name}</td>
+                                <td>${phoneNumber}</td>
+                            </tr>`;
+
+                $tableEnd30.insertAdjacentHTML('beforeend',html);
+            });
+
+            $allTableEnd30.style.display = 'inline-table';
+        }else
+        {
+            $allTableEnd30.style.display = 'none';
+            $allPatientPurchased.style.display = 'flex';
         }
     }catch(error)
     {

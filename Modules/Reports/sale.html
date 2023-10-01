@@ -213,54 +213,93 @@
         </div>
       </div><br>
       <!--Enpoitn 12,25-->
-
-      <!--Entpoint 36-->
-      <div class="card">
-        <div class="card-body">
-          <div class="card-header">
-            <p class="text-end">
-              💊💊 Total medications sold per quarter <b>2023</b></p>
+    <div class="order">
+      <div class="item1" style="margin: auto auto auto auto;">
+        <!--Enpoint 22-->
+        <div class="card-block inicio-card" style="width: 15rem; margin: auto auto auto auto;">
+          <div class="card-body text-center">
+            <img src="https://cdn-icons-png.flaticon.com/128/9789/9789319.png" class="card-img-top image-top"
+              alt="...">
+            <h5 class="card-title">Patient who has spent the most money in 2023 💵</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+            <p class="card-text" id="patientMoreSpent"><!--Se llena de forma dinámica--></p>
           </div>
-          <select id="selectQuarter" class="form-select" aria-label="Default select example">
-            <option value="0" selected>Select quarter</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-          <br>
-          <p id="totalQuarter"><!--Se agrega dinámicamente--></p>
-          <div class="container">
-            <div class="row">
-              <div class="row cards" style="width: auto; margin: auto auto;" id="totalQuarterMed">
-                <!--Se agrega dinámicamente-->
+        </div>  
+        <!--Enpoint 22-->
+      </div>
+      <div class="item2">
+        <!--Entpoint 36-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">
+              <p class="text-end">
+                💊💊 Total medications sold per quarter <b>2023</b></p>
+            </div>
+            <select id="selectQuarter" class="form-select" aria-label="Default select example">
+              <option value="0" selected>Select quarter</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            <br>
+            <p id="totalQuarter"><!--Se agrega dinámicamente--></p>
+            <div class="container">
+              <div class="row">
+                <div class="row cards" style="width: auto; margin: auto auto;" id="totalQuarterMed">
+                  <!--Se agrega dinámicamente-->
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div><br>
-      <!--Enpoint 36-->
+        </div><br>
+        <!--Enpoint 36-->
 
-      <!--Endpoint 33-->
-      <div class="card">
-        <div class="card-body">
-          <div class="card-header">🧾🧾 Total spent by each patient.</p></div>
-            <table class="table" id="table12">
-            <thead>
-              <tr>
-                <th scope="col">N°</th>
-                <th scope="col">Identification Number</th>
-                <th scope="col">Name</th>
-                <th scope="col">Telephone</th>
-              </tr>
-            </thead>
-            <tbody id="infoEndpoint33">
-              <!--Se agrega dinámicamente-->
-            </tbody>
-          </table>
-        </div>
-      </div><br>
-      <!--Endpoint 33-->
+        <!--Endpoint 33-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">🧾🧾 Total spent by each patient <b>2023</b></p></div>
+              <table class="table" id="table12">
+              <thead>
+                <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Identification Number</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Telephone</th>
+                </tr>
+              </thead>
+              <tbody id="infoEndpoint33">
+                <!--Se agrega dinámicamente-->
+              </tbody>
+            </table>
+          </div>
+        </div><br>
+        <!--Endpoint 33-->
+      </div>  
+    </div>
+    <!--Endpoint 30-->
+    <div class="card">
+      <div class="card-body">
+        <div class="card-header">🧍🧍‍♀️ Patients who have not purchased any medication in <b>2023</b></p></div>
+          <div id="allPatientPurchased" class="text-center"><p class="card-text text-center">All patients have purchases 🎉🎉</p></div>
+          <table class="table" id="table30">
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Identification Number</th>
+              <th scope="col">Name</th>
+              <th scope="col">Telephone</th>
+            </tr>
+          </thead>
+          <tbody id="infoEndpoint30">
+            <!--Se agrega dinámicamente-->
+          </tbody>
+        </table>
+      </div>
+    </div><br>
+    <!--Endpoint 30-->
+
+      
     </main>
     <!-- MAIN -->
   </section>
