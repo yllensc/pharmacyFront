@@ -1,4 +1,4 @@
-import {getMedicines,end5,end8,end9, end21, end12} from "../../Scripts/routes.js";
+import {getMedicines,end5,end8,end9, end21, end12,end25} from "../../Scripts/routes.js";
 const options = {
     method: "GET",
     headers: {
@@ -28,6 +28,10 @@ const $tableEnd12 = document.getElementById("infoEndpoint12");
 const $allTableEnd12 = document.getElementById("table12");
 const $contEnd12 = document.getElementById("unsoldMedicine");
 
+const $btn2023End25 = document.getElementById("p2023");
+const $btnAllEnd25 = document.getElementById("pAll");
+
+
 //AddEventListener - Sale
 document.addEventListener("DOMContentLoaded", function () {
     loadMedicine();
@@ -43,34 +47,53 @@ $selectOptionsMedicine.addEventListener('change', ()=>
         return
     }
     $contEnd5.innerHTML=" ";
-    return 
 });
+
+$btnUnsold2023.addEventListener('click', ()=>{
+    const titleModal = "Unsold medicines in 2023 🤨🤨";
+    loadUnsold(end9,titleModal);
+});
+$btnUnsoldNever.addEventListener('click', ()=>{
+  const titleModal = "Unsold medicines never 💀💀";
+  loadUnsold(end21,titleModal);
+});
+$closeMyModal.addEventListener('click', () => {
+  myModal.hide();
+});
+
 $selectOptionsMedicine2.addEventListener('change', ()=>
 {
+    $allTableEnd12.style.display = "none";
+    $contEnd12.innerHTML=" ";
+    $tableEnd12.innerHTML=" ";
+});
+
+$btn2023End25.addEventListener("click", ()=>{
+    const idValue =  $selectOptionsMedicine2.value;
+    $allTableEnd12.style.display = "none";
+
+    if(idValue != "0")
+    {
+        $contEnd12.innerHTML=" ";
+        $tableEnd12.innerHTML=" ";
+        loadPatients(idValue,end25);
+        return
+    }
+
+});
+$btnAllEnd25.addEventListener("click", ()=>{
     const idValue =  $selectOptionsMedicine2.value;
     if(idValue != "0")
     {
         $contEnd12.innerHTML=" ";
         $tableEnd12.innerHTML=" ";
-        loadPatients(idValue);
+        loadPatients(idValue,end12);
         return
     }
     $allTableEnd12.style.display = "none";
-   
-    return 
+
 });
 
-$btnUnsold2023.addEventListener('click', ()=>{
-      const titleModal = "Unsold medicines in 2023 🤨🤨";
-      loadUnsold(end9,titleModal);
-});
-$btnUnsoldNever.addEventListener('click', ()=>{
-    const titleModal = "Unsold medicines never 💀💀";
-    loadUnsold(end21,titleModal);
-});
-$closeMyModal.addEventListener('click', () => {
-    myModal.hide();
-});
 
 //FUNCIONES
 
@@ -222,11 +245,11 @@ async function loadUnsold(enpoint, titlemodal)
     }
 }
 
-async function loadPatients(id)
+async function loadPatients(id, endp)
 {
     try
     {
-        const response = await fetch(end12+`/${id}`,options);
+        const response = await fetch(endp+`/${id}`,options);
         if(!response.ok)
         {
             throw new Error(`Failed. State: ${response.status}`);
