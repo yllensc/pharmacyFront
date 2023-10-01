@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../style.css" />
     <script src="../../main.js" async></script>
     <script src="../../Scripts/Reports/sale.js" defer type="module"></script>
-    <title>AdminSite</title>
+    <title>Sale Report</title>
   </head>
   <body>
     <!-- SIDEBAR -->
@@ -41,34 +41,32 @@
             <i class="bx bx-chevron-right icon-right"></i
           ></a>
           <ul class="side-dropdown">
-            <li>
-              <a href="MedicineService/medicine.html">Crud Medicamento</a>
-            </li>
+            <li><a href="MedicineService/medicine.html">Crud Medicamento</a></li>
             <li><a href="#">Crud Proveedor</a></li>
             <li><a href="#">Crud Paciente</a></li>
           </ul>
         </li>
-        <li class="divider" data-text="Informe">Reports</li>
+        <li class="divider" data-text="Reports">Reports</li>
         <li>
-          <a href="#"><i class="bx bxs-inbox icon"></i>Ventas</a>
+          <a href="sale.html"><i class="bx bxs-inbox icon"></i>Sales</a>
         </li>
         <li>
-          <a href="#"><i class="bx bxs-inbox icon"></i>Compras</a>
+          <a href="purchase.html"><i class="bx bxs-inbox icon"></i>Purchases</a>
         </li>
         <li>
-          <a href="#"><i class="bx bxs-inbox icon"></i>Ganancias</a>
+          <a href="#"><i class="bx bxs-inbox icon"></i>Profits</a>
         </li>
         <li>
-          <a href="#"><i class="bx bxs-inbox icon"></i>Medicamentos</a>
+          <a href="#"><i class="bx bxs-inbox icon"></i>Medicines</a>
         </li>
         <li>
-          <a href="#"><i class="bx bxs-inbox icon"></i>Empleados</a>
+          <a href="#"><i class="bx bxs-inbox icon"></i>Employees</a>
         </li>
         <li>
-          <a href="#"><i class="bx bxs-inbox icon"></i>Proveedores</a>
+          <a href="#"><i class="bx bxs-inbox icon"></i>Providers</a>
         </li>
         <li>
-          <a href="#"><i class="bx bxs-inbox icon"></i>Pacientes</a>
+          <a href="#"><i class="bx bxs-inbox icon"></i>Patients</a>
         </li>
         <!-- <li>
         <a href="#"><i class='bx bxs-notepad icon' ></i> Forms <i class='bx bx-chevron-right icon-right' ></i></a>
@@ -112,68 +110,88 @@
 
       <!-- MAIN -->
       <main>
-        <!-- <h1 class="title">Sale Report</h1>
-        <ul class="breadcrumbs">
-          <li><a href="#">Home</a></li>
-          <li class="divider">/</li>
-          <li><a href="#" class="active">SaleReport</a></li>
-        </ul>
-        <div class="info-data">
-          <div class="card" id="firts-data"></div>
-          <div class="card" id="second-data"></div>
-          <div class="card" id="third-data">-
-            <div class="text-end pb-1">
-              <span class="badge bg-info rounded-3 fw-semibold"
-                >Total in Sales</span
-              >
-            </div>
-            <div class="head">
-              <div class="form-group">
-                <select id="monthSelect" class="form-control"></select>
+        <h1 class="title text-center">Sales report</h1>
+
+        <div class="container">
+          <div class="row">
+            <div class="row cards" style="width: auto; margin: auto auto;">
+              <!--Enpoint 8-->
+              <div class="card-block inicio-card" style="width: 18rem;">
+                <div class="card-body text-center">
+                  <img src="https://cdn-icons-png.flaticon.com/128/4269/4269620.png" class="card-img-top image-top" alt="..." >
+                  <h5 class="card-title">Total of all sales 💵💵</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+                  
+                  <p class="card-text" id="totalSales"><!--Se llena de forma dinámica--></p>
+                </div>
+              </div>
+            <!--Enpoint 8-->
+            <!--Enpoint 5-->
+            <div class="card-block inicio-card" style="width: 18rem;">
+              <div class="card-body text-center">
+                <img src="https://cdn-icons-png.flaticon.com/128/3638/3638933.png" class="card-img-top image-top" alt="..." >
+                <h5 class="card-title text-center">Total sales amount by medicine 📈</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">
+                  <select  id="selectMedicine" class="form-select" aria-label="Default select example">
+                    <option value="0" selected>Select medicine</option>
+                  </select>
+                </h6>
+                <p class="card-text" id="totalMedicines"> <!--Se llena de forma dinámica--></p>
               </div>
             </div>
-            <span class="label fs-3" id="label1"></span>
-          </div>
-          <div class="card" id="fourth-data"></div>
-        </div>
-        <div class="data">
-          <div class="content-data">
-            <div class="head"> -->
-              <h3>Sales Report</h3>
+          <!--Enpoint 5-->
+          <!--Enpoint 9,21-->
+          <div class="card-block inicio-card" style="width: 18rem;">
+            <div class="card-body text-center carColumn">
+              <img src="https://cdn-icons-png.flaticon.com/128/3555/3555195.png" class="card-img-top image-top" alt="..." >
+              <h5 class="card-title text-center">Unsold medicines</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+              <button data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary" id="btnUnsold">2023</button><br>
+              <button data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary" id="btnUnsoldN">Never</button>
+
+
             </div>
-            <!-- contenido -->
-            <table class="table table-striped" style="width: 100%">
-              <thead>
-                <tr>
-                  <th>Id Medicine</th>
-                  <th>Id Patient</th>
-                  <th>Id Employee</th>
-                  <th>Quantity</th>
-                  <th>Prescription</th>
-                </tr>
-              </thead>
-              <tbody id="tableSalesBody"></tbody>
-              <tfoot>
-                <tr>
-                  <th>Id Medicine</th>
-                  <th>Id Patient</th>
-                  <th>Id Employee</th>
-                  <th>Quantity</th>
-                  <th>Prescription</th>
-                </tr>
-              </tfoot>
-            </table>
+          </div>
+          <!--Enpoint 9,21-->
+
+
+          <!--MODAL-->
+          <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"><!--Se llena dinámicamente --></h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <table class="table" id="tableModal">
+                    <!--Se llena dinámicamente-->
+                  </table>
+                </div>
+  
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--MODAL-->
+
+
+
+
+            </div>
           </div>
         </div>
-        <div id="chart"></div>
       </main>
       <!-- MAIN -->
     </section>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+      <!--Bootstrap-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"></script>
+    <!--SweetAlert2-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   </body>
 </html>

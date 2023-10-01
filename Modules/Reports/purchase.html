@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+    href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    crossorigin="anonymous"
+  />
+   <!--Bootstrap-->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+   integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../main.js" async></script>
+  <script type="module" src="../../Scripts/Reports/purchase.js"></script>
+
+<title>Purchasing Report</title>
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <section id="sidebar">
+    <a href="#" class="brand"><i class="bx bxs-smile icon"></i> AdminSite</a>
+    <ul class="side-menu">
+      <li>
+        <a href="../../index.html" class="active"
+          ><i class="bx bxs-dashboard icon"></i> Dashboard</a
+        >
+      </li>
+      <li class="divider" data-text="main">Main</li>
+      <li>
+        <a href="#"><i class="bx bxs-inbox icon"></i> Venta </a>
+      </li>
+      <li>
+        <a href="#"><i class="bx bxs-inbox icon"></i> Compra </a>
+      </li>
+      <li>
+        <a href="#"
+          ><i class="bx bxs-inbox icon"></i> Gestion
+          <i class="bx bx-chevron-right icon-right"></i
+        ></a>
+        <ul class="side-dropdown">
+          <li><a href="MedicineService/medicine.html">Crud Medicamento</a></li>
+          <li><a href="#">Crud Proveedor</a></li>
+          <li><a href="#">Crud Paciente</a></li>
+        </ul>
+      </li>
+      <li class="divider" data-text="Reports">Reports</li>
+      <li>
+        <a href="sale.html"><i class="bx bxs-inbox icon"></i>Sales</a>
+      </li>
+      <li>
+        <a href="#"><i class="bx bxs-inbox icon"></i>Purchases</a>
+      </li>
+      <li>
+        <a href="#"><i class="bx bxs-inbox icon"></i>Profits</a>
+      </li>
+      <li>
+        <a href="#"><i class="bx bxs-inbox icon"></i>Medicines</a>
+      </li>
+      <li>
+        <a href="#"><i class="bx bxs-inbox icon"></i>Employees</a>
+      </li>
+      <li>
+        <a href="#"><i class="bx bxs-inbox icon"></i>Providers</a>
+      </li>
+      <li>
+        <a href="#"><i class="bx bxs-inbox icon"></i>Patients</a>
+      </li>
+      <!-- <li>
+      <a href="#"><i class='bx bxs-notepad icon' ></i> Forms <i class='bx bx-chevron-right icon-right' ></i></a>
+      <ul class="side-dropdown">
+          <li><a href="#">Basic</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Checkbox</a></li>
+          <li><a href="#">Radio</a></li>
+      </ul>
+  </li> -->
+    </ul>
+  </section>
+  <!-- SIDEBAR -->
+
+  <section id="content">
+    <!-- NAVBAR -->
+    <nav id="navbar">
+      <i class="bx bx-menu toggle-sidebar"></i>
+      <form action="#"></form>
+      <span class="divider"></span>
+      <div class="profile">
+        <img
+          src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+          alt=""
+        />
+        <ul class="profile-link">
+          <li>
+            <a href="#"><i class="bx bxs-user-circle icon"></i> Profile</a>
+          </li>
+          <li>
+            <a href="#"><i class="bx bxs-cog"></i> Settings</a>
+          </li>
+          <li>
+            <a href="#"><i class="bx bxs-log-out-circle"></i> Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- NAVBAR -->
+
+    <main>
+
+      <h1 class="title text-center">Providers purchasing report</h1>
+
+      <!--Enpoint 28,24 -->
+        <div class="container">
+          <div class="row">
+            <div class="row cards " style="width: auto; margin: auto auto;">
+              <div id="totalProviders" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+              <div id="providerMoreMedicines" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+              <div id="providerAleast5medicines" style="width: auto;"> <!--Se agrega dinámicamente--></div>
+
+            </div>
+          </div>
+        </div>
+      <!--Enpoint 28,24 -->
+      <!--Modal-->
+        <div class="modal fade" id="modalProviders" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><!--Se llena dinámicamente --></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <table class="table" id="tableModal">
+                  <!--Se llena dinámicamente-->
+                </table>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--Modal-->
+
+      <!--Enpoint 16-->
+        <div class="purchasesData">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-header">
+                Total purchases by provider in 2023 💲💲
+              </div>
+              <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Identification Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Total Purchased</th>
+                </tr>
+                </thead>
+                <tbody id="infoEndpoint16">
+                    <!--Se agrega dinámicamente-->
+                </tbody>
+              </table>
+            </div>
+        </div><br>
+      <!--Enpoint 16-->
+      
+
+      <!--Enpoint 13 -->
+        <div class="purchasesData">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-header">
+                Providers without purchases in the last year 😥😥
+              </div>
+              <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Identification Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody id="infoEndpoint13">
+                    <!--Se agrega dinámicamente-->
+                </tbody>
+              </table>
+            </div>
+          </div><br>
+      <!--Enpoint 13 -->
+
+      <!--Enpoint 3 -->
+        <div class="card">
+            <div class="card-body">
+              <div class="card-header">
+                  <p class="text-end"> 
+                    💊💊 Medicines purchased from a provider</p>          
+              </div>
+              <select  id="selectProvider" class="form-select" aria-label="Default select example">
+                <option selected>Select provider</option>
+              </select>
+              <br>
+              <div class="container">
+                <div class="row">
+                  <div class="row cards" style="width: auto; margin: auto auto;" id="medicinesbyProvider">
+                      <!--Se agrega dinámicamente-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--Enpoint 3 -->  
+    </main>
+
+     <!--Bootstrap-->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+     crossorigin="anonymous"></script>
+    <!--SweetAlert2-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+</body>
+</html>
