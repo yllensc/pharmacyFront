@@ -1,4 +1,4 @@
-import {end1, end2 } from "../../Scripts/routes.js";
+import {end1, end2, end10 } from "../../Scripts/routes.js";
 
 const options = {
     method: "GET",
@@ -14,11 +14,15 @@ const $tableEnd1 = document.getElementById("infoEndpoint1");
 const $selectorStock = document.getElementById("stock");
 
 const $contEnd2 = document.getElementById("infoEnd2");
+
+const $contEnd10 = document.getElementById("infoEnd10");
+
 //AddEventListener - Medicine
 document.addEventListener("DOMContentLoaded", function () {
     $allTableEnd1.style.display = "none";
     $allAboveStockEnd1.style.display = "none";
     loadInfoProviders();
+    loadMoreExpensive();
 });
 
 $selectorStock.addEventListener('input', (e)=>{
@@ -153,6 +157,35 @@ async function loadInfoProviders()
         {
            $contEnd2.innerHTML= `<p class="card-text">There is nothing here 👻</p>`;
         }
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function loadMoreExpensive()
+{
+    try
+    {
+        const response = await fetch(end10,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        $contEnd10.innerHTML = "";
+        
+        if(result != ""){
+            let html = ` <p class="card-text fs-5 text-center"> <b><br>${result[0].name}</b> </p>
+            <p class="card-text fs-5 text-center"> <b>Price:</b><br>${result[0].price} </p>`;
+
+
+            $contEnd10.insertAdjacentHTML('beforeend',html);
+        }else{
+            $contEnd10.innerHTML = `<p class="card-text"> <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
+            <p class="card-text fs-3 text-center">There isn't medicines😿  </p>`;
+        }
+       
     }catch(error)
     {
         console.error(error);

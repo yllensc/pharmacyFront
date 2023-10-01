@@ -124,6 +124,24 @@
       <!-- MAIN -->
       <main>
         <h1 class="title text-center">Medicines report</h1>
+        <div class="container">
+          <div class="row">
+            <div class="row cards" style="width: auto; margin: auto auto;">
+              <!--Enpoint 10-->
+              <div class="card-block inicio-card" style="width: 15rem;">
+                <div class="card-body text-center">
+                  <img src="https://cdn-icons-png.flaticon.com/128/8042/8042846.png" class="card-img-top image-top"
+                    alt="...">
+                  <h5 class="card-title">More expensive medicine</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+                  <div class="card-text" id="infoEnd10"><!--Se llena de forma dinámica--></div>
+                </div>
+              </div>
+              <!--Enpoint 10-->
+            </div>
+          </div>
+        </div>
+          
         <!--Endpoint 1-->
         <div class="card">
           <div class="card-body">
@@ -158,6 +176,29 @@
           </div>
         </div><br>
         <!--Endpoint 2-->
+        <!--Endpoint 6 ARREGLAR--> 
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">
+              💊💊 Medicines that expire before January 1 <input id="year" type="number" min="2024" style="width: 80px;" value="2024"> </p></div>
+            <br>
+            <table class="table" id="table6">
+              <thead>
+                <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Stock</th>
+                  <th scope="col">Date Expiration</th>
+                  <th scope="col">Provider</th>
+                </tr>
+              </thead>
+              <tbody id="infoEndpoint6">
+                <!--Se agrega dinámicamente-->
+              </tbody>
+            </table>
+          </div>
+        </div><br>
+        <!--Endpoint 6-->
        
 
       </main>

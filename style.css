@@ -636,3 +636,8 @@ main .btn-send:hover {
     justify-content: center;
 }
 
+/*Styles medicines*/
+input:invalid {
+	border: solid red 3px;
+  }
+

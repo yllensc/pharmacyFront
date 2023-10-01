@@ -38,6 +38,7 @@ export const end30 = "http://localhost:5223/api/pharmacy/Patient/patientsWithNoS
 export const getMedicines = "http://localhost:5223/api/pharmacy/Medicine/";
 export const end1 = "http://localhost:5223/api/pharmacy/Medicine/underStock";
 export const end2 = "http://localhost:5223/api/pharmacy/Medicine/GetProvidersInfoWithMedicines";
+export const end6 = "http://localhost:5223/api/pharmacy/Medicine/ExpiresUnder";
 //EMPLOYEES
 export const getEmployees = "http://localhost:5223/api/pharmacy/Employee/";
 
