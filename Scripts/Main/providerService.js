@@ -144,7 +144,7 @@ async function showProvidersList() {
         }
     });
 
-    // Inicializar la lista de medicamentos al cargar la página
+    // Inicializar la lista de proveedores al cargar la página
     showProvidersList();
 
 });

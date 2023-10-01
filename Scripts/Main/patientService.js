@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
             if (response.ok) {
                 const data = await response.json();
+                console.log(data);
                 return data;
                 
             } else {
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return [];
         }
     }
-    //Función para crear un proveedor
+    //Función para crear un paciente
     async function createPatient(patient) {
         const response = await fetch(`${urlPatient}`, {
             method: 'POST',
@@ -40,11 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const createdPatient = await response.text();
             return createdPatient;
         } else {
-            console.error('Error al crear el proveedor:', response);
+            console.error('Error al crear el paciente:', response);
             return null;
         }
     }
-// Función para actualizar un proveedor
+// Función para actualizar un paciente
 async function updatePatient(patient) {
     const response = await fetch(`${urlPatient}`, {
         method: 'PUT',
@@ -58,11 +59,11 @@ async function updatePatient(patient) {
         const updatePatient = await response.text();
         return updatePatient;
     } else {
-        console.error('Error al editar el proveedor:', response);
+        console.error('Error al editar el paciente:', response);
         return null;
     }
 }
-// Función para eliminar un proveedor
+// Función para eliminar un paciente
 async function deletePatient(patientId) {
     const response = await fetch(`${urlPatient}/${patientId}`, {
         method: 'DELETE',
@@ -76,17 +77,17 @@ async function deletePatient(patientId) {
         const deletePatient = await response.text();
         return deletePatient;
     } else {
-        console.error('Error al eliminar el proveedor:', response);
+        console.error('Error al eliminar el paciente:', response);
         return null;
     }
 }
-// Función para mostrar la lista de proveedores
+// Función para mostrar la lista de pacientees
 async function showPatientsList() {
     const patients = await fetchPatients();
     showPatients(patients);
 }
 
-    // Función para mostrar los proveedores en la tabla
+    // Función para mostrar los pacientees en la tabla
     function showPatients(patients) {
         tablePatients.innerHTML = "";
         patients.forEach((patient) => {
@@ -107,10 +108,10 @@ async function showPatientsList() {
      // Evento para enviar el formulario de creación
      patientForm.addEventListener('submit', async function (event) {
         event.preventDefault();
-        const idenNumber = document.getElementById('idenNumberpatient').value;
-        const name = document.getElementById('namepatient').value;
-        const phoneNumber = document.getElementById('phoneNumberpatient').value;
-        const address = document.getElementById('addresspatient').value;
+        const idenNumber = document.getElementById('idenNumber').value;
+        const name = document.getElementById('namePatient').value;
+        const phoneNumber = document.getElementById('phoneNumberPatient').value;
+        const address = document.getElementById('addressPatient').value;
         const patient = {
             idenNumber,
             name,
@@ -122,7 +123,7 @@ async function showPatientsList() {
         await showPatientsList();
     });
     // Evento para abrir el modal de edición
-    tablepatients.addEventListener("click", async function (event) {
+    tablePatients.addEventListener("click", async function (event) {
         if (event.target.classList.contains("editButtonpatient")) {
             const row = event.target.closest("tr");
             const name = row.querySelector(".namepatient").textContent;
@@ -130,9 +131,9 @@ async function showPatientsList() {
             const address = row.querySelector(".addresspatient").textContent;
             const patientIdUpdate = row.querySelector(".delButtonpatient").getAttribute("data-id-del");
             // Rellenar los campos del modal con los datos
-            document.getElementById('namepatientEdit').value = name;
-            document.getElementById('phoneNumberpatientEdit').value = phoneNumberpatient;
-            document.getElementById('addresspatientEdit').value = address;
+            document.getElementById('namePatientEdit').value = name;
+            document.getElementById('phoneNumberPatientEdit').value = phoneNumberpatient;
+            document.getElementById('addressPatientEdit').value = address;
             document.getElementById('patientFormEdit').setAttribute('data-patient-id', patientIdUpdate);
         }
         else if (event.target.classList.contains("delButtonpatient")) {
@@ -146,9 +147,9 @@ async function showPatientsList() {
     patientFormEdit.addEventListener('submit', async function (event) {
         event.preventDefault();
         const patientId = patientFormEdit.getAttribute('data-patient-id');
-        const name = document.getElementById('namepatientEdit').value;
-        const phoneNumber = document.getElementById('phoneNumberpatientEdit').value;
-        const address = document.getElementById('addresspatientEdit').value;
+        const name = document.getElementById('namePatientEdit').value;
+        const phoneNumber = document.getElementById('phoneNumberPatientEdit').value;
+        const address = document.getElementById('addressPatientEdit').value;
         const editedpatient = {
             id: patientId,
             name,
@@ -156,16 +157,16 @@ async function showPatientsList() {
             address
         };
         console.log(editedpatient);
-        const success = await updatepatient(editedpatient);
+        const success = await updatePatient(editedpatient);
 
         if (success) {
             patientFormEdit.reset();
         } else {
-            console.error('Error al actualizar el proveedor.');
+            console.error('Error al actualizar el paciente.');
         }
     });
 
-    // Inicializar la lista de medicamentos al cargar la página
+    // Inicializar la lista de pacientes al cargar la página
     showPatientsList();
 
 });
