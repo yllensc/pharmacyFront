@@ -630,4 +630,9 @@ main .btn-send:hover {
 	grid-row-start: 1;
 	grid-row-end: 3;
 }
+.providers-2{
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: center;
+}
 
