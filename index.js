@@ -179,6 +179,26 @@ function loadSelects() {
   }
 }
 
+//verificación de roles para la vista en el index
+function getCookie(name) {
+  const cookies = document.cookie.split("; ");
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split("=");
+    if (cookieName === "Roles") {
+      return decodeURIComponent(cookieValue);
+    }
+  }
+  return null;
+}
+
+// Obtén el rol almacenado en las cookies
+const userRoles = getCookie("Roles");
+const employeeLink = document.querySelector('a[href="./Modules/Main/employee.html"]');
+if (userRoles && userRoles.includes("Employee")) {
+  employeeLink.style.display = "none";
+}
+
+
 // Datos para el gráfico (puedes personalizar estos datos según tus necesidades)
 // const options = {
 //     chart: {
@@ -196,3 +216,5 @@ function loadSelects() {
 // // Crear una instancia de ApexCharts y renderizar el gráfico en el contenedor
 // const chart = new ApexCharts(document.querySelector('#chart'), options);
 // chart.render();
+
+

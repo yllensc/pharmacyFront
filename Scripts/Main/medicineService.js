@@ -1,5 +1,5 @@
 import { fetchProviders, fetchMedicines, urlMedicine } from '../Main/UtilService/utilCRUDfetch.js';
-
+import { handleUnauthorizedResponse, getTokenFromCookies } from "./UtilService/AuthenticationToken.js"
 document.addEventListener('DOMContentLoaded', function () {
     // Elementos del DOM
     const medicineForm = document.getElementById('medicineForm');
@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const medicineFormEdit = document.getElementById('medicineFormEdit');
     const selectProvider = document.getElementById("providerId");
     // Función para crear un medicamento
+    handleUnauthorizedResponse();
     async function createMedicine(medicine) {
         const response = await fetch(`${urlMedicine}/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getTokenFromCookies()}`,
             },
             body: JSON.stringify(medicine),
         });
@@ -21,15 +23,18 @@ document.addEventListener('DOMContentLoaded', function () {
             return createdMedicine;
         } else {
             console.error('Error al crear el medicamento:', response);
+            alert(`Error al crear el medicamento - Error: ${response.status}: ${response.statusText}`);
             return null;
         }
     }
     // Función para actualizar un medicamento
     async function updateMedicine(medicine) {
+        //await handleUnauthorizedResponse();
         const response = await fetch(`${urlMedicine}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                //'Authorization': `Bearer ${getTokenFromCookies()}`,
             },
             body: JSON.stringify(medicine),
         });
@@ -44,10 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // Función para eliminar un medicamento
     async function deleteMedicine(medicineId) {
+        //await handleUnauthorizedResponse();
         const response = await fetch(`${urlMedicine}/${medicineId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
+                //'Authorization': `Bearer ${getTokenFromCookies()}`,
             },
             body: JSON.stringify(medicineId),
         });
@@ -158,4 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
     showMedicinesList();
     // Inicializar la lista de proveedores al cargar la página
     showProvidersList(selectProvider);
+
+    
+
 });

@@ -34,19 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then((result) => {
         if (result.isAuthenticated === true) {
-          document.cookie = `token=${encodeURIComponent(result.token)}; path=/`;
-          document.cookie = `refreshToken=${encodeURIComponent(
-            result.refreshToken
-          )}; path=/`;
-          document.cookie = `isAuthenticated=${encodeURIComponent(
-            result.isAuthenticated
-          )}; path=/`;
-          document.cookie = `userName=${encodeURIComponent(
-            result.userName
-          )}; path=/`;
+          document.cookie = `token=${result.token}; path=/`;
+          document.cookie = `refreshToken=${encodeURIComponent(result.refreshToken)}; path=/`;
+          document.cookie = `isAuthenticated=${encodeURIComponent(result.isAuthenticated)}; path=/`;
+          document.cookie = `userName=${encodeURIComponent(result.userName)}; path=/`;
+          document.cookie = `ExpirationDate=${encodeURIComponent(result.refreshTokenExpiration)}; path=/`;
+          document.cookie = `Roles=${encodeURIComponent(result.roles[0])}; path=/`;
+          console.log(result);
           window.location.assign(index);
         }
-
         if (
           result.message ===
           `User does not exist with userName ${result.userName}.`
@@ -67,4 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error:", error);
       });
   });
+
+  
+  
+
+
 });
