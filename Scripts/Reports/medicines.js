@@ -1,4 +1,4 @@
-import {end1, end2, end10 } from "../../Scripts/routes.js";
+import {end1, end2, end10, end26 } from "../../Scripts/routes.js";
 
 const options = {
     method: "GET",
@@ -11,11 +11,14 @@ const options = {
 const $allAboveStockEnd1 = document.getElementById('allAboveStock');
 const $allTableEnd1 = document.getElementById("table1");
 const $tableEnd1 = document.getElementById("infoEndpoint1");
-const $selectorStock = document.getElementById("stock");
+const $inputStock = document.getElementById("stock");
 
 const $contEnd2 = document.getElementById("infoEnd2");
 
 const $contEnd10 = document.getElementById("infoEnd10");
+
+const $contEnd26 = document.getElementById("infoEnd26");
+const $inputYearMedicine = document.getElementById("yearMedicine");
 
 //AddEventListener - Medicine
 document.addEventListener("DOMContentLoaded", function () {
@@ -25,12 +28,20 @@ document.addEventListener("DOMContentLoaded", function () {
     loadMoreExpensive();
 });
 
-$selectorStock.addEventListener('input', (e)=>{
+$inputStock.addEventListener('input', (e)=>{
     let select = e.target.value;
     if(select != '0' && select>0 && select != ""){
         loadUnderStock(select);
     }
     $allTableEnd1.style.display = 'none';
+});
+
+$inputYearMedicine.addEventListener('input', (e) =>
+{
+    let select = e.target.value;
+    if(select != '0' && select>=2022 && select != ""){
+        loadMedicinesMonth(select);
+    }
 });
 //Funciones
 
@@ -190,6 +201,110 @@ async function loadMoreExpensive()
             <p class="card-text fs-3 text-center">There isn't medicines😿  </p>`;
         }
        
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function loadMedicinesMonth(year)
+{
+    try
+    {
+        const response = await fetch(end26+`${year}`,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        
+        for (const month in result)
+        {
+            if(result[month] != "")
+            {
+                let modal = `<!-- Modal -->
+                                <div class="modal fade" id="medicines${month}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Sales Quantity: ${month}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <h3 class="text-center" >List Medicines</h3>
+                                        <table class="table" id="table12">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">N°</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Quantity Sold</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="${month}">
+                                            <!--Se agrega dinámicamente-->
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            <!-- Modal -->`;
+            $contEnd26.insertAdjacentHTML('beforeend',modal);
+            let total = 0;
+            result[month].forEach((medicines,index)=> 
+            {
+                const {medicineName, quantitySold} = medicines;
+                total += quantitySold;
+
+                let html = `<tr>
+                            <th scope="row">${index+1}</th>
+                            <td>${medicineName}</td>
+                            <td>${quantitySold}</td>
+                        </tr>`;
+                
+
+                document.getElementById(`${month}`).insertAdjacentHTML('beforeend',html);
+            });
+
+            let html = `<div class="card inicio-card" style="width: 18rem;">
+                        <div class="card-body text-center" style="padding: 5px;">
+                        <p class="card-text fs-5 text-center">
+                        <b>${month.toUpperCase()}</b></p>
+                        <p class="card-text fs-5 text-center" >Total</p>
+                        <p id="ID${month}" class="card-subtitle mb-2 text-center"><!-- Se agrega dinámicamente --> </p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicines${month}" >Medicines</button><br>
+                        </div>
+                    </div>`;
+            $contEnd26.insertAdjacentHTML('beforeend',html);
+            document.getElementById(`ID${month}`).innerHTML= total;
+
+            
+            }else
+            {
+                let html = `<div class="card inicio-card" style="width: 18rem;">
+                            <div class="card-body text-center" style="padding: 5px;">
+                            <p class="card-text fs-5 text-center">
+                            <b>${month.toUpperCase()}</b></p>
+                            <p class="card-text fs-5 text-center" >Total</p>
+                            <p class="card-subtitle mb-2 text-center"> 0😿 </p> 
+                            <p class="card-subtitle mb-2 text-center"> There were no sales</p> 
+                            </div>
+                        </div>`;
+                $contEnd26.insertAdjacentHTML('beforeend',html);
+
+            }
+            
+
+
+           
+
+        };
+
+            
+        
     }catch(error)
     {
         console.error(error);
