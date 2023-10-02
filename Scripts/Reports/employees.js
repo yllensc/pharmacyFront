@@ -11,10 +11,13 @@ import {
   end32,
   end37,
 } from "../../Scripts/routes.js";
+import { handleUnauthorizedResponse, getTokenFromCookies } from "../Main/UtilService/AuthenticationToken.js"
+
 const options = {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
+    'Authorization': `Bearer ${getTokenFromCookies()}`,
   },
 };
 
@@ -41,6 +44,7 @@ const $yearSale37 = document.getElementById("yearSale37");
 const $monthSelect = document.getElementById("monthSelect");
 
 document.addEventListener("DOMContentLoaded", function () {
+  handleUnauthorizedResponse();
   $allTableEnd20.style.display = "none";
   $allTableEnd23.style.display = "none";
   $allTableEnd27.style.display = "none";

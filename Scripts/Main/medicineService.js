@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                //'Authorization': `Bearer ${getTokenFromCookies()}`,
+                'Authorization': `Bearer ${getTokenFromCookies()}`,
             },
             body: JSON.stringify(medicine),
         });
@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return updateMedicine;
         } else {
             console.error('Error al editar el medicamento:', response);
+            alert(`Error al editar el medicamento - Error: ${response.status}: ${response.statusText}`);
             return null;
         }
     }
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                //'Authorization': `Bearer ${getTokenFromCookies()}`,
+                'Authorization': `Bearer ${getTokenFromCookies()}`,
             },
             body: JSON.stringify(medicineId),
         });
@@ -64,6 +65,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return deleteMedicine;
         } else {
             console.error('Error al eliminar el medicamento:', response);
+            alert(`Error al eliminar el medicamento - Error: ${response.status}: ${response.statusText}`);
+
             return null;
         }
     }

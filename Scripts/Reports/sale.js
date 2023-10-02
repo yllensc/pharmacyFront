@@ -15,10 +15,13 @@ import {
   end17,
   getSales,
 } from "../../Scripts/routes.js";
+import { handleUnauthorizedResponse, getTokenFromCookies } from "../Main/UtilService/AuthenticationToken.js"
+
 const options = {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
+    'Authorization': `Bearer ${getTokenFromCookies()}`,
   },
 };
 
@@ -70,6 +73,7 @@ const $contEnd17 = document.getElementById("totalSale");
 
 //AddEventListener - Sale
 document.addEventListener("DOMContentLoaded", function () {
+  handleUnauthorizedResponse();
   loadMedicine();
   loadTotalAllSales();
   loadLessMedicine();

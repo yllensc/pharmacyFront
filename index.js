@@ -194,8 +194,11 @@ function getCookie(name) {
 // Obtén el rol almacenado en las cookies
 const userRoles = getCookie("Roles");
 const employeeLink = document.querySelector('a[href="./Modules/Main/employee.html"]');
+const employeeReportLink = document.querySelector('a[href="./Modules/Reports/employees.html"]');
+
 if (userRoles && userRoles.includes("Employee")) {
   employeeLink.style.display = "none";
+  employeeReportLink.style.display = "none";
 }
 
 

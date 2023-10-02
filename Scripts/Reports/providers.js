@@ -1,8 +1,11 @@
 import {end7, end11, end29} from "../../Scripts/routes.js";
+import { handleUnauthorizedResponse, getTokenFromCookies } from "../Main/UtilService/AuthenticationToken.js"
+
 const options = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${getTokenFromCookies()}`,
     },
 };
 
@@ -16,6 +19,7 @@ const $allAboveStockEnd29 = document.getElementById('allAboveStock');
 
 //AddEventListener 
 document.addEventListener("DOMContentLoaded", function () {
+    handleUnauthorizedResponse();
    loadProviderMedicines();
    loadTotalMedicines();
    $allAboveStockEnd29.style.display = "none";

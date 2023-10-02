@@ -1,3 +1,6 @@
+import { handleUnauthorizedResponse, getTokenFromCookies } from "./UtilService/AuthenticationToken.js"
+document.addEventListener('DOMContentLoaded', function () {
+  handleUnauthorizedResponse();
 const urlUsers = "http://localhost:5223/api/pharmacy";
 async function fetchUsers() {
   try {
@@ -5,6 +8,7 @@ async function fetchUsers() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${getTokenFromCookies()}`,
       },
     });
 
@@ -17,10 +21,14 @@ async function fetchUsers() {
         "Error al obtener la lista de usuarios:",
         response.statusText
       );
+      alert(`Error al obtener la lista de usuarios - Error: ${response.status}: ${response.statusText}`);
+
       return [];
     }
   } catch (error) {
     console.error("Error al realizar la solicitud GET:", error);
+    alert(`Error al realizar la solicitud GET - Error: ${error}`);
+
     return [];
   }
 }
@@ -44,10 +52,13 @@ async function fetchEmployees() {
         "Error al obtener la lista de empleados:",
         response.statusText
       );
+      alert(`Error al obtener la lista de empleados - Error: ${response.status}: ${response.statusText}`);
+
       return [];
     }
   } catch (error) {
     console.error("Error al realizar la solicitud GET:", error);
+    alert(`Error al realizar la solicitud GET - Error: ${error}`);
     return [];
   }
 }
@@ -58,6 +69,7 @@ async function fetchRoles() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${getTokenFromCookies()}`,
       },
     });
 
@@ -67,13 +79,15 @@ async function fetchRoles() {
       return data;
     } else {
       console.error(
-        "Error al obtener la lista de empleados:",
+        "Error al obtener la lista de roles:",
         response.statusText
       );
+      alert(`Error al obtener la lista de roles - Error: ${response.status}: ${response.statusText}`);
       return [];
     }
   } catch (error) {
     console.error("Error al realizar la solicitud GET:", error);
+    alert(`Error al realizar la solicitud GET - Error: ${error}`);
     return [];
   }
 }
@@ -93,6 +107,7 @@ async function createUser(user) {
     return createdUser;
   } else {
     console.error("Error al crear el usuario:", response);
+    alert(`Error al crear el usuario - Error: ${response.status}: ${response.statusText}`);
     return null;
   }
 }
@@ -103,6 +118,7 @@ async function addRole(user) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${getTokenFromCookies()}`,
     },
     body: JSON.stringify(user),
   });
@@ -112,6 +128,7 @@ async function addRole(user) {
     return createdUser;
   } else {
     console.error("Error al asignar rol:", response);
+    alert(`Error al asignar rol - Error: ${response.status}: ${response.statusText}`);
     return null;
   }
 }
@@ -210,3 +227,4 @@ function showUsers(users) {
     tableUsers.insertAdjacentHTML("afterbegin", rowHTML);
   });
 }
+});
