@@ -1,15 +1,20 @@
+import { handleUnauthorizedResponse, getTokenFromCookies } from "./UtilService/AuthenticationToken.js"
+
 document.addEventListener('DOMContentLoaded', function () {
+    handleUnauthorizedResponse();
     const patientForm = document.getElementById('patientForm');
     const patientFormEdit = document.getElementById('patientFormEdit');
     const tablePatients = document.querySelector('.body-tablePatients');
 
     const urlPatient = "http://localhost:5223/api/pharmacy/Patient";
+    
     async function fetchPatients() {
         try {
             const response = await fetch(`${urlPatient}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getTokenFromCookies()}`,
                 },
             });
     
@@ -33,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getTokenFromCookies()}`,
             },
             body: JSON.stringify(patient),
         });
@@ -51,6 +57,7 @@ async function updatePatient(patient) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getTokenFromCookies()}`,
         },
         body: JSON.stringify(patient),
     });
@@ -69,6 +76,7 @@ async function deletePatient(patientId) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getTokenFromCookies()}`,
         },
         body: JSON.stringify(patientId),
     });

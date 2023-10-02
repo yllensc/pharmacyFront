@@ -1,9 +1,11 @@
 import { end1, end2, end10, end26, end38, end, getMedicines, end6 } from "../../Scripts/routes.js";
+import { handleUnauthorizedResponse, getTokenFromCookies } from "../Main/UtilService/AuthenticationToken.js"
 
 const options = {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
+    'Authorization': `Bearer ${getTokenFromCookies()}`,
   },
 };
 
@@ -34,6 +36,7 @@ const $contEnp6 = document.getElementById("infoEndpoint6");
 
 //AddEventListener - Medicine
 document.addEventListener("DOMContentLoaded", function () {
+  handleUnauthorizedResponse();
   $allTableEnd1.style.display = "none";
   $allAboveStockEnd1.style.display = "none";
   loadInfoProviders();

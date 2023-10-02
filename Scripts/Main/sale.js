@@ -4,6 +4,8 @@ import {
   getPatients,
   postManySales,
 } from "../../Scripts/routes.js";
+import { handleUnauthorizedResponse, getTokenFromCookies } from "./UtilService/AuthenticationToken.js"
+
 const optionsGet = {
   method: "GET",
   headers: {
@@ -22,6 +24,7 @@ const $medicineQuantities = document.getElementById("medicineQuantities");
 const selectedMedicine = {};
 
 document.addEventListener("DOMContentLoaded", function () {
+  handleUnauthorizedResponse();
   fillEmployeeSelect();
   fillPatientSelect();
   fillMedicineSelect();
@@ -198,6 +201,7 @@ async function createSale(sale) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${getTokenFromCookies()}`,
     },
     body: JSON.stringify(sale),
   });
@@ -210,3 +214,4 @@ async function createSale(sale) {
     return null;
   }
 }
+

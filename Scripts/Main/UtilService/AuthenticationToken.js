@@ -6,6 +6,7 @@ function getTokenFromCookies() {
   if (tokenCookie) {
     const tokenValue = tokenCookie.split("=")[1];
     const decodeToken = decodeURIComponent(tokenValue);
+    console.log(decodeToken);
     return decodeToken;
   }
   return null;

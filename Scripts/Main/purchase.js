@@ -1,4 +1,6 @@
 import { getMedicines, getProviders, postManyPurchases } from "../routes.js";
+import { handleUnauthorizedResponse } from "./UtilService/AuthenticationToken.js"
+
 const optionsGet = {
   method: "GET",
   headers: {
@@ -16,6 +18,7 @@ const $medicineQuantities = document.getElementById("medicineQuantities");
 let selectedMedicine = {};
 
 document.addEventListener("DOMContentLoaded", function () {
+  handleUnauthorizedResponse();
   fillProviderSelect();
 });
 const medicines = await fillMedicineSelect();
@@ -182,6 +185,7 @@ async function createPurchase(purchase) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${getTokenFromCookies()}`,
     },
     body: JSON.stringify(purchase),
   });

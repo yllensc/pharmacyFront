@@ -1,16 +1,20 @@
 import { fetchProviders, urlProvider } from '../Main/UtilService/utilCRUDfetch.js';
+import { handleUnauthorizedResponse, getTokenFromCookies } from "./UtilService/AuthenticationToken.js"
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    handleUnauthorizedResponse();
     const providerForm = document.getElementById('providerForm');
     const providerFormEdit = document.getElementById('providerFormEdit');
     const tableProviders = document.querySelector('.body-tableProviders');
+    
     //Función para crear un proveedor
     async function createProvider(Provider) {
         const response = await fetch(`${urlProvider}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getTokenFromCookies()}`,
             },
             body: JSON.stringify(Provider),
         });
@@ -29,6 +33,7 @@ async function updateProvider(provider) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getTokenFromCookies()}`,
         },
         body: JSON.stringify(provider),
     });
@@ -47,6 +52,7 @@ async function deleteProvider(providerId) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getTokenFromCookies()}`,
         },
         body: JSON.stringify(providerId),
     });

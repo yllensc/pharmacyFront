@@ -1,9 +1,11 @@
 import {end28,end35,end16,end24,end13,getProviders,end3 } from "../../Scripts/routes.js";
+import { handleUnauthorizedResponse, getTokenFromCookies } from "../Main/UtilService/AuthenticationToken.js"
 
 const options = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${getTokenFromCookies()}`,
     },
 }; 
 //SELECTORES DOM
@@ -22,6 +24,7 @@ const $selectOptionsProvider = document.getElementById("selectProvider");
 
 //AddEventListener
 document.addEventListener("DOMContentLoaded", function () {
+    handleUnauthorizedResponse();
     loadTotalProviderPurchased();
     loadAleast5medicines();
     loadMoreMedicinesByProvider();
