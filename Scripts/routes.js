@@ -54,6 +54,7 @@ export const end30 = "http://localhost:5223/api/pharmacy/Patient/patientsWithNoS
 
 //PROVIDERS
 export const end7 = "http://localhost:5223/api/pharmacy/Provider/getProvidersWithCantMedicines";
-
+export const end11 = "http://localhost:5223/api/pharmacy/Provider/getProvidersWithCantTotalMedicines";
+export const end29 = "http://localhost:5223/api/pharmacy/Provider/providersWithMedicinesUnder";
 /* Routes HTML */
 export const indexRoute = "../Modules/index.js"; 
