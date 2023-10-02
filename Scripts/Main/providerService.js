@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return createdProvider;
         } else {
             console.error('Error al crear el proveedor:', response);
+            alert(`Error al crear el proveedor - Error: ${response.status}: ${response.statusText}`);
+
             return null;
         }
     }
@@ -43,6 +45,7 @@ async function updateProvider(provider) {
         return updateProvider;
     } else {
         console.error('Error al editar el proveedor:', response);
+        alert(`Error al editar el proveedor - Error: ${response.status}: ${response.statusText}`);
         return null;
     }
 }
@@ -62,6 +65,7 @@ async function deleteProvider(providerId) {
         return deleteProvider;
     } else {
         console.error('Error al eliminar el proveedor:', response);
+        alert(`Error al eliminar el proveedor - Error: ${response.status}: ${response.statusText}`);
         return null;
     }
 }

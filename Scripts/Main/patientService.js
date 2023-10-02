@@ -25,10 +25,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             } else {
                 console.error('Error al obtener la lista de pacientes:', response.statusText);
+                alert(`Error al obtener la lista de pacientes - Error: ${response.status}: ${response.statusText}`);
+
                 return [];
             }
         } catch (error) {
             console.error('Error al realizar la solicitud GET:', error);
+            alert(`Error al realizar la solicitud GET - Error: ${response.status}: ${response.statusText}`);
+
             return [];
         }
     }
@@ -48,6 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return createdPatient;
         } else {
             console.error('Error al crear el paciente:', response);
+            alert(`Error al crear el paciente - Error: ${response.status}: ${response.statusText}`);
+
             return null;
         }
     }
@@ -67,6 +73,8 @@ async function updatePatient(patient) {
         return updatePatient;
     } else {
         console.error('Error al editar el paciente:', response);
+        alert(`Error al editar el paciente - Error: ${response.status}: ${response.statusText}`);
+
         return null;
     }
 }
@@ -86,6 +94,8 @@ async function deletePatient(patientId) {
         return deletePatient;
     } else {
         console.error('Error al eliminar el paciente:', response);
+        alert(`Error al eliminar el paciente - Error: ${response.status}: ${response.statusText}`);
+
         return null;
     }
 }
