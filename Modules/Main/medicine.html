@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>CRUD de Medicamentos</title>
+    <title>Medicines</title>
 </head>
 <body>
   <div class="container">
-    <h1 class="text-center">Hey, aquí están tus medicamentos 😎</h1>
+    <h1 class="text-center">Hey, here are your medicines 😎</h1>
     <div class="row">
       <div class="col-md-6 mx-auto">
         <form id="medicineForm">
-          <h5>Agregar nuevo medicamento</h5>
+          <h5>Add New Medicine</h5>
           <div class="mb-3">
-            <label for="name" class="form-label">Nombre:</label>
+            <label for="name" class="form-label">Name:</label>
             <input type="text" id="name" name="name" class="form-control" required>
           </div>
 
           <div class="mb-3">
-            <label for="price" class="form-label">Precio:</label>
+            <label for="price" class="form-label">Price:</label>
             <input type="number" id="price" name="price" class="form-control" required>
           </div>
 
@@ -30,13 +30,13 @@
           </div>
 
           <div class="mb-3">
-            <label for="providerId" class="form-label">Proveedor:</label>
+            <label for="providerId" class="form-label">Provider:</label>
             <select id="providerId" name="providerId" class="form-select" required>
-              <option value="">--Selecciona un proveedor--</option>
+              <option value="">--Select a provider--</option>
             </select>
           </div>
 
-          <button type="submit" id="createButton" class="btn btn-primary">Crear</button>
+          <button type="submit" id="createButton" class="btn btn-primary">Create</button>
         </form>
       </div>
     </div>
@@ -45,39 +45,39 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edita la info del medicamento</h5>
+              <h5 class="modal-title">Edit Medicine Information</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="medicineFormEdit">
-                    <label for="nameEdit">Nombre:</label>
+                    <label for="nameEdit">Name:</label>
                     <input type="text" id="nameEdit" name="name" disabled class="form-control"><br>
             
-                    <label for="priceEdit">Precio:</label>
+                    <label for="priceEdit">Price:</label>
                     <input type="number" id="priceEdit" name="price" class="form-control" required><br>
             
                     <label for="stockEdit">Stock:</label>
                     <input type="number" id="stockEdit" name="stock" class="form-control" required><br>
             
-                    <button type="submit" id="updateButton" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" id="updateButton" class="btn btn-primary">Update</button>
                 </form>
             </div>
           </div>
         </div>
       </div>
-    <!-- tabla para mostrar la lista de medicamentos -->
-    <h2>Lista de Medicamentos</h2>
+    <!-- Table to display the list of medicines -->
+    <h2>Medicine List</h2>
     <div class="container-medicine">
         <table class="table table-light table-striped">
           <thead>
             <tr>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Precio</th>
+                <th>Name</th>
+                <th>Price</th>
                 <th>Stock</th>
-                <th>ID del Proveedor</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Provider ID</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
           </thead>
           <tbody class="body-tableMedicines">
