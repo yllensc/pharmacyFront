@@ -210,7 +210,8 @@ async function createSale(sale) {
     alert(createdMedicine);
     console.log(createdMedicine);
   } else {
-    console.error("Error al crear el medicamento:", response);
+    console.error("Error al crear la venta:", response);
+    alert(`Error al crear la venta - Error: ${response.status}: ${response.statusText}`);
     return null;
   }
 }

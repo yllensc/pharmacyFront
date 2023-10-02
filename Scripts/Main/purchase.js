@@ -194,7 +194,8 @@ async function createPurchase(purchase) {
     alert(createdMedicine);
     console.log(createdMedicine);
   } else {
-    console.error("Error al crear el medicamento:", response);
+    console.error("Error al crear el compra:", response);
+    alert(`Error al crear el compra - Error: ${response.status}: ${response.statusText}`);
     return null;
   }
 }
