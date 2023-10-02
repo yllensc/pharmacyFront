@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../style.css" />
     <script src="../../main.js" async></script>
     <script src="../../Scripts/Reports/providers.js" defer type="module"></script>
-    <title>Sale Report</title>
+    <title>Provider Report</title>
   </head>
   <body>
     <!-- SIDEBAR -->
@@ -122,7 +122,42 @@
       <!-- NAVBAR -->
 
       <!-- MAIN -->
-      <main></main>
+      <main>
+        <h1 class="title text-center">Providers report</h1>
+        <!--Endpoint 7-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header text-center">💊💊Total medications sold by each provider </div>
+            <br>
+            <div class="providers-2" id="infoEnd7"></div>
+          </div>
+        </div><br>
+        <!--Endpoint 7-->
+
+        <!--Endpoint 11-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header text-center">💊💊Number of medications per provider </div>
+            <br>
+            <div class="providers-2" id="infoEnd11"></div>
+          </div>
+        </div><br>
+        <!--Endpoint 11-->
+        <!--Endpoint 29-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">
+              Providers of medicines with less than <input id="stockEnp26" placeholder="50" min="1" type="number" style="width: 80px;"> in stock.</p></div>
+            <br>
+            <div id="allAboveStock" class="text-center">All providers medicines are above stock 🎉</div>
+
+            <div class="providers-2" id="infoEnd29"></div>
+          </div>
+        </div><br>
+        <!--Endpoint 29-->
+        
+
+      </main>
       <!-- MAIN -->
     </section>
     <!--Bootstrap-->

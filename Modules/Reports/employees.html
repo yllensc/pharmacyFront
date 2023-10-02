@@ -15,8 +15,12 @@
     />
     <link rel="stylesheet" href="../../style.css" />
     <script src="../../main.js" async></script>
-    <script src="../../Scripts/Reports/employees.js" defer type="module"></script>
-    <title>Sale Report</title>
+    <script
+      src="../../Scripts/Reports/employees.js"
+      defer
+      type="module"
+    ></script>
+    <title>Employee Report</title>
   </head>
   <body>
     <!-- SIDEBAR -->
@@ -64,9 +68,7 @@
           >
         </li>
         <li>
-          <a href="./profits.html"
-            ><i class="bx bxs-inbox icon"></i>Profits</a
-          >
+          <a href="./profits.html"><i class="bx bxs-inbox icon"></i>Profits</a>
         </li>
         <li>
           <a href="./medicines.html"
@@ -122,7 +124,194 @@
       <!-- NAVBAR -->
 
       <!-- MAIN -->
-      <main></main>
+      <main>
+        <h1 class="title text-center">Employees report</h1>
+        <div class="container">
+          <div class="row">
+            <!--Enpoint 32-->
+            <div
+              class="card-block inicio-card col-md-4"
+              style="width: 15rem; margin: auto auto auto auto"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/4269/4269620.png"
+                class="card-img-top image-top"
+                alt="..."
+              />
+              <h5 class="card-title">
+                Employee who has sold the most different medications in
+                <input
+                  id="year"
+                  placeholder="2023"
+                  min="2022"
+                  type="number"
+                  style="width: 80px"
+                />
+              </h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+
+              <p class="card-text" id="employeeName">
+                <!--Se llena de forma dinámica-->
+              </p>
+            </div>
+
+            <!--Enpoint 32-->
+            <!-- Endpoint 20 -->
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-header">
+                    Employees who have made more than
+                    <input
+                      id="sales"
+                      placeholder="5"
+                      min="1"
+                      type="number"
+                      style="width: 80px"
+                    />
+                    sales in total.
+                  </div>
+                  <br />
+                  <div id="allSales" class="text-center">
+                    All employees are sale 🎉
+                  </div>
+                  <table class="table" id="table20">
+                    <thead>
+                      <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Name</th>
+                      </tr>
+                    </thead>
+                    <tbody id="infoEndpoint20">
+                      <!--Se agrega dinámicamente-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <br />
+            </div>
+            <!--Endpoint 20-->
+            <!-- Endpoint 23 -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-header">
+                    Employees who have not made any sales in
+                    <input
+                      id="yearSale"
+                      placeholder="2023"
+                      min="2022"
+                      type="number"
+                      style="width: 80px"
+                    />
+                  </div>
+                  <br />
+                  <table class="table" id="table23">
+                    <thead>
+                      <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Name</th>
+                      </tr>
+                    </thead>
+                    <tbody id="infoEndpoint23">
+                      <!--Se agrega dinámicamente-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <br />
+            </div>
+            <!--Endpoint 23-->
+            <!-- Endpoint 27 -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-header">
+                    Employees with less than
+                    <input
+                      id="inputSale27"
+                      value="5"
+                      min="1"
+                      type="number"
+                      style="width: 80px"
+                    />
+                    sales in
+                    <input
+                      id="yearSale27"
+                      value="2023"
+                      min="2022"
+                      type="number"
+                      style="width: 80px"
+                    />
+                  </div>
+                  <br />
+                  <table class="table" id="table27">
+                    <thead>
+                      <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Name</th>
+                      </tr>
+                    </thead>
+                    <tbody id="infoEndpoint27">
+                      <!--Se agrega dinámicamente-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <br />
+            </div>
+            <!--Endpoint 27-->
+            <!-- Endpoint 37 -->
+            <div class="margin: auto auto auto auto">
+              <div class="col-md-8">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-header">
+                      Employees who did not make sales in
+                      <select id="monthSelect" style="width: 80px">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                      of
+                      <input
+                        id="yearSale37"
+                        value="2023"
+                        min="2022"
+                        type="number"
+                        style="width: 80px"
+                      />
+                    </div>
+                    <br />
+                    <table class="table" id="table37">
+                      <thead>
+                        <tr>
+                          <th scope="col">N°</th>
+                          <th scope="col">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody id="infoEndpoint37">
+                        <!--Se agrega dinámicamente-->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <br />
+              </div>
+            </div>
+            <!--Endpoint 37-->
+          </div>
+        </div>
+      </main>
       <!-- MAIN -->
     </section>
     <!--Bootstrap-->

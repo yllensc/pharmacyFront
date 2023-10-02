@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="../../style.css" />
     <script src="../../main.js" async></script>
-    <script src="../../Scripts/Main/sale.js" defer type="module"></script>
+    <script src="../../Scripts/Main/purchase.js" defer type="module"></script>
     <title>PharmacyCampus</title>
   </head>
   <body>
@@ -32,12 +32,10 @@
         </li>
         <li class="divider" data-text="main">Main</li>
         <li>
-          <a href="./sale.html" class="active"
-            ><i class="bx bxs-inbox icon"></i> Sale
-          </a>
+          <a href="./sale.html"><i class="bx bxs-inbox icon"></i> Sale </a>
         </li>
         <li>
-          <a href="./purchase.html"
+          <a href="./purchase.html" class="active"
             ><i class="bx bxs-inbox icon"></i> Purchase
           </a>
         </li>
@@ -126,17 +124,11 @@
       <!-- MAIN -->
       <main>
         <div class="container mt-5">
-          <h1 class="mb-4">Sale</h1>
-          <form id="saleForm">
+          <h1 class="mb-4">Purchase</h1>
+          <form id="purchaseForm">
             <div class="mb-3">
-              <label for="employee" class="form-label">Employee:</label>
-              <select class="form-select" name="employee" id="employee">
-                <!-- Se llena dinamicamente -->
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="patient" class="form-label">Patient:</label>
-              <select class="form-select" name="patient" id="patient">
+              <label for="provider" class="form-label">Provider:</label>
+              <select class="form-select" name="provider" id="provider">
                 <!-- Se llena dinamicamente -->
               </select>
             </div>
@@ -149,12 +141,13 @@
             <div id="medicinePrice">
               <!-- Se llena dinamicamente -->
             </div>
-
             <table class="table">
               <thead>
                 <tr>
-                  <th>Medicamento</th>
-                  <th>Cantidad</th>
+                  <th>Medicine</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>ExpirationDate</th>
                 </tr>
               </thead>
               <tbody id="medicineQuantities">
@@ -174,7 +167,9 @@
               />
             </div>
 
-            <button type="submit" class="btn btn-primary">Register Sale</button>
+            <button type="submit" class="btn btn-primary">
+              Register Purchase
+            </button>
           </form>
         </div>
       </main>
