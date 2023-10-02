@@ -1,14 +1,14 @@
-import {end1, end2, end10, end26, end38 } from "../../Scripts/routes.js";
+import { end1, end2, end10, end26, end38 } from "../../Scripts/routes.js";
 
 const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
 };
 
 //SELECTORES DEL DOM
-const $allAboveStockEnd1 = document.getElementById('allAboveStock');
+const $allAboveStockEnd1 = document.getElementById("allAboveStock");
 const $allTableEnd1 = document.getElementById("table1");
 const $tableEnd1 = document.getElementById("infoEndpoint1");
 const $inputStock = document.getElementById("stock");
@@ -26,118 +26,101 @@ const $tableEnd38 = document.getElementById("infoEndpoint38");
 const $allTableEnd38 = document.getElementById("tableEnd38");
 const $textEnp38 = document.getElementById("textEnp38");
 
-
-
 //AddEventListener - Medicine
 document.addEventListener("DOMContentLoaded", function () {
-    $allTableEnd1.style.display = "none";
-    $allAboveStockEnd1.style.display = "none";
-    loadInfoProviders();
-    loadMoreExpensive();
-    $allTableEnd38.style.display = "none";
-    $textEnp38.style.display = "none";
+  $allTableEnd1.style.display = "none";
+  $allAboveStockEnd1.style.display = "none";
+  loadInfoProviders();
+  loadMoreExpensive();
+  $allTableEnd38.style.display = "none";
+  $textEnp38.style.display = "none";
 });
 
-$inputStock.addEventListener('input', (e)=>{
-    let select = e.target.value;
-    if( select>0 && select != ""){
-        loadUnderStock(select);
+$inputStock.addEventListener("input", (e) => {
+  let select = e.target.value;
+  if (select > 0 && select != "") {
+    loadUnderStock(select);
+  }
+  $allTableEnd1.style.display = "none";
+});
+
+$inputYearMedicine.addEventListener("input", (e) => {
+  let select = e.target.value;
+  if (select != "0" && select >= 2022 && select != "") {
+    loadMedicinesMonth(select);
+  }
+});
+
+$inputStock38.addEventListener("input", (e) => {
+  let selectS = e.target.value;
+  let selectP = $inputPrice38.value;
+  if (selectS != "" && selectP != "") {
+    if (selectS > 0 && selectP > 0) {
+      loadParametersMedicine(selectP, selectS);
     }
-    $allTableEnd1.style.display = 'none';
+  }
+  $allTableEnd38.style.display = "none";
 });
-
-$inputYearMedicine.addEventListener('input', (e) =>
-{
-    let select = e.target.value;
-    if(select != '0' && select>=2022 && select != ""){
-        loadMedicinesMonth(select);
+$inputPrice38.addEventListener("input", (e) => {
+  let selectP = e.target.value;
+  let selectS = $inputStock38.value;
+  if (selectS != "" && selectP != "") {
+    if (selectS > 0 && selectP > 0) {
+      loadParametersMedicine(selectP, selectS);
     }
-});
-
-$inputStock38.addEventListener('input', (e) =>{
-    let selectS = e.target.value;
-    let selectP = $inputPrice38.value;
-    if(selectS != "" && selectP != "") 
-    {
-        if(selectS>0 && selectP>0)
-        {
-            loadParametersMedicine(selectP,selectS)
-        }
-    }   
-    $allTableEnd38.style.display = 'none';
-});
-$inputPrice38.addEventListener('input', (e) =>{
-    let selectP = e.target.value;
-    let selectS = $inputStock38.value;
-    if(selectS != "" && selectP != "") 
-    {
-        if(selectS>0 && selectP>0)
-        {
-            loadParametersMedicine(selectP,selectS)
-        }
-    }   
-    $allTableEnd38.style.display = 'none';
+  }
+  $allTableEnd38.style.display = "none";
 });
 //Funciones
 
-async function loadUnderStock(stock)
-{
-    try
-    {
-        const response = await fetch(end1+`${stock}`,options);
-        if(!response.ok)
-        {
-            throw new Error(`Failed. State: ${response.status}`);
-        } 
-        const result = await response.json();
-        $tableEnd1.innerHTML   = " ";
-        console.log(result)
-        if(result != "")
-        {
-            $allAboveStockEnd1.style.display = 'none';
+async function loadUnderStock(stock) {
+  try {
+    const response = await fetch(end1 + `${stock}`, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    $tableEnd1.innerHTML = " ";
+    console.log(result);
+    if (result != "") {
+      $allAboveStockEnd1.style.display = "none";
 
-            result.forEach((provider,index) => {
-                const {name,stock,providerName } = provider;
-                
-                let html = `<tr>
-                                <th scope="row">${index+1}</th>
+      result.forEach((provider, index) => {
+        const { name, stock, providerName } = provider;
+
+        let html = `<tr>
+                                <th scope="row">${index + 1}</th>
                                 <td>${name}</td>
                                 <td>${stock}</td>
                                 <td>${providerName}</td>
                             </tr>`;
 
-                $tableEnd1.insertAdjacentHTML('beforeend',html);
-            });
+        $tableEnd1.insertAdjacentHTML("beforeend", html);
+      });
 
-            $allTableEnd1.style.display = 'inline-table';
-        }else
-        {
-            $allTableEnd1.style.display = 'none';
-            $allAboveStockEnd1.style.display = 'flex';
-        }
-    }catch(error)
-    {
-        console.error(error);
+      $allTableEnd1.style.display = "inline-table";
+    } else {
+      $allTableEnd1.style.display = "none";
+      $allAboveStockEnd1.style.display = "flex";
     }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-async function loadInfoProviders()
-{
-    try
-    {
-        const response = await fetch(end2,options);
-        if(!response.ok)
-        {
-            throw new Error(`Failed. State: ${response.status}`);
-        } 
-        const result = await response.json();
-        if(result != "")
-        {
+async function loadInfoProviders() {
+  try {
+    const response = await fetch(end2, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    if (result != "") {
+      result.forEach((provider) => {
+        const { medicinesList, idenNumber, name, email, address, id } =
+          provider;
 
-            result.forEach((provider) => {
-                const {medicinesList,idenNumber,name,email, address, id } = provider;
-                
-                let html = `<div class="card inicio-card" style="width: 18rem;">
+        let html = `<div class="card inicio-card" style="width: 18rem;">
                             <div class="card-body text-center" style="padding: 5px;">
                             <img src="https://cdn-icons-png.flaticon.com/128/2982/2982693.png" alt="provider.png" style="width: 75px; ">
                             <p class="card-subtitle mb-2 text-center">
@@ -151,9 +134,9 @@ async function loadInfoProviders()
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicine${id}" >Medicines</button><br>
                             </div>
                         </div>`;
-                $contEnd2.insertAdjacentHTML('beforeend',html);
+        $contEnd2.insertAdjacentHTML("beforeend", html);
 
-                let modal = ` <!-- Modal -->
+        let modal = ` <!-- Modal -->
                                 <div class="modal fade" id="medicine${id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
@@ -184,79 +167,64 @@ async function loadInfoProviders()
                                     </div>
                                 </div>
                                 <!-- Modal -->`;
-                $contEnd2.insertAdjacentHTML('beforeend',modal);
+        $contEnd2.insertAdjacentHTML("beforeend", modal);
 
-                medicinesList.forEach((medicines,index)=> 
-                {
-                   const {name, stock, price} = medicines;
-                    let html = `<tr>
-                                <th scope="row">${index+1}</th>
+        medicinesList.forEach((medicines, index) => {
+          const { name, stock, price } = medicines;
+          let html = `<tr>
+                                <th scope="row">${index + 1}</th>
                                 <td>${name}</td>
                                 <td>${price}</td>
                                 <td>${stock}</td>
                             </tr>`;
 
-                    document.getElementById(`infoEndpoint1ID${id}`).insertAdjacentHTML('beforeend',html);
-                });
-
-            });
-
-            
-        }else
-        {
-           $contEnd2.innerHTML= `<p class="card-text">There is nothing here 👻</p>`;
-        }
-    }catch(error)
-    {
-        console.error(error);
+          document
+            .getElementById(`infoEndpoint1ID${id}`)
+            .insertAdjacentHTML("beforeend", html);
+        });
+      });
+    } else {
+      $contEnd2.innerHTML = `<p class="card-text">There is nothing here 👻</p>`;
     }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-async function loadMoreExpensive()
-{
-    try
-    {
-        const response = await fetch(end10,options);
-        if(!response.ok)
-        {
-            throw new Error(`Failed. State: ${response.status}`);
-        } 
-        const result = await response.json();
-        $contEnd10.innerHTML = "";
-        
-        if(result != ""){
-            let html = ` <p class="card-text fs-5 text-center"> <b><br>${result[0].name}</b> </p>
+async function loadMoreExpensive() {
+  try {
+    const response = await fetch(end10, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    $contEnd10.innerHTML = "";
+
+    if (result != "") {
+      let html = ` <p class="card-text fs-5 text-center"> <b><br>${result[0].name}</b> </p>
             <p class="card-text fs-5 text-center"> <b>Price:</b><br>${result[0].price} </p>`;
 
-
-            $contEnd10.insertAdjacentHTML('beforeend',html);
-        }else{
-            $contEnd10.innerHTML = `<p class="card-text"> <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
+      $contEnd10.insertAdjacentHTML("beforeend", html);
+    } else {
+      $contEnd10.innerHTML = `<p class="card-text"> <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
             <p class="card-text fs-3 text-center">There isn't medicines😿  </p>`;
-        }
-       
-    }catch(error)
-    {
-        console.error(error);
     }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-async function loadMedicinesMonth(year)
-{
-    try
-    {
-        const response = await fetch(end26+`${year}`,options);
-        if(!response.ok)
-        {
-            throw new Error(`Failed. State: ${response.status}`);
-        } 
-        const result = await response.json();
-        $contEnd26.innerHTML = " ";
-        for (const month in result)
-        {
-            if(result[month] != "")
-            {
-                let modal = `<!-- Modal -->
+async function loadMedicinesMonth(year) {
+  try {
+    const response = await fetch(end26 + `${year}`, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    $contEnd26.innerHTML = " ";
+    for (const month in result) {
+      if (result[month] != "") {
+        let modal = `<!-- Modal -->
                                 <div class="modal fade" id="medicines${month}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
@@ -286,24 +254,24 @@ async function loadMedicinesMonth(year)
                                     </div>
                                 </div>
                             <!-- Modal -->`;
-            $contEnd26.insertAdjacentHTML('beforeend',modal);
-            let total = 0;
-            result[month].forEach((medicines,index)=> 
-            {
-                const {medicineName, quantitySold} = medicines;
-                total += quantitySold;
+        $contEnd26.insertAdjacentHTML("beforeend", modal);
+        let total = 0;
+        result[month].forEach((medicines, index) => {
+          const { medicineName, quantitySold } = medicines;
+          total += quantitySold;
 
-                let html = `<tr>
-                            <th scope="row">${index+1}</th>
+          let html = `<tr>
+                            <th scope="row">${index + 1}</th>
                             <td>${medicineName}</td>
                             <td>${quantitySold}</td>
                         </tr>`;
-                
 
-                document.getElementById(`${month}`).insertAdjacentHTML('beforeend',html);
-            });
+          document
+            .getElementById(`${month}`)
+            .insertAdjacentHTML("beforeend", html);
+        });
 
-            let html = `<div class="card inicio-card" style="width: 18rem;">
+        let html = `<div class="card inicio-card" style="width: 18rem;">
                         <div class="card-body text-center" style="padding: 5px;">
                         <p class="card-text fs-5 text-center">
                         <b>${month.toUpperCase()}</b></p>
@@ -312,13 +280,10 @@ async function loadMedicinesMonth(year)
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicines${month}" >Medicines</button><br>
                         </div>
                     </div>`;
-            $contEnd26.insertAdjacentHTML('beforeend',html);
-            document.getElementById(`ID${month}`).innerHTML= total;
-
-            
-            }else
-            {
-                let html = `<div class="card inicio-card" style="width: 18rem;">
+        $contEnd26.insertAdjacentHTML("beforeend", html);
+        document.getElementById(`ID${month}`).innerHTML = total;
+      } else {
+        let html = `<div class="card inicio-card" style="width: 18rem;">
                             <div class="card-body text-center" style="padding: 5px;">
                             <p class="card-text fs-5 text-center">
                             <b>${month.toUpperCase()}</b></p>
@@ -327,61 +292,46 @@ async function loadMedicinesMonth(year)
                             <p class="card-subtitle mb-2 text-center"> There were no sales</p> 
                             </div>
                         </div>`;
-                $contEnd26.insertAdjacentHTML('beforeend',html);
-
-            }
-            
-
-
-           
-
-        };
-
-            
-        
-    }catch(error)
-    {
-        console.error(error);
+        $contEnd26.insertAdjacentHTML("beforeend", html);
+      }
     }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-async function  loadParametersMedicine(price,stock){
-    try
-    {
-        const response = await fetch(end38+`Price${price}Stock${stock}`,options);
-        if(!response.ok)
-        {
-            throw new Error(`Failed. State: ${response.status}`);
-        } 
-        const result = await response.json();
-        $tableEnd38.innerHTML   = " ";
-        console.log(result)
-        if(result != "")
-        {
-            $textEnp38.style.display = 'none';
+async function loadParametersMedicine(price, stock) {
+  try {
+    const response = await fetch(end38 + `Price${price}Stock${stock}`, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    $tableEnd38.innerHTML = " ";
+    console.log(result);
+    if (result != "") {
+      $textEnp38.style.display = "none";
 
-            result.forEach((provider,index) => {
-                const {name,stock,providerName,price} = provider;
-                
-                let html = `<tr>
-                                <th scope="row">${index+1}</th>
+      result.forEach((provider, index) => {
+        const { name, stock, providerName, price } = provider;
+
+        let html = `<tr>
+                                <th scope="row">${index + 1}</th>
                                 <td>${name}</td>
                                 <td>${stock}</td>
                                 <td>${price}</td>
                                 <td>${providerName}</td>
                             </tr>`;
 
-                $tableEnd38.insertAdjacentHTML('beforeend',html);
-            });
+        $tableEnd38.insertAdjacentHTML("beforeend", html);
+      });
 
-            $allTableEnd38.style.display = 'inline-table';
-        }else
-        {
-            $allTableEnd38.style.display = 'none';
-            $textEnp38.style.display = 'flex';
-        }
-    }catch(error)
-    {
-        console.error(error);
+      $allTableEnd38.style.display = "inline-table";
+    } else {
+      $allTableEnd38.style.display = "none";
+      $textEnp38.style.display = "flex";
     }
+  } catch (error) {
+    console.error(error);
+  }
 }
