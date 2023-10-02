@@ -12,6 +12,8 @@ import {
   end36,
   end22,
   end30,
+  end17,
+  getSales,
 } from "../../Scripts/routes.js";
 const options = {
   method: "GET",
@@ -63,6 +65,9 @@ const $allPatientPurchased = document.getElementById("allPatientPurchased");
 const $allTableEnd4 = document.getElementById("table4");
 const $tableEnd4 = document.getElementById("infoEndpoint4");
 
+const $selectSales = document.getElementById("selectSale");
+const $contEnd17 = document.getElementById("totalSale");
+
 //AddEventListener - Sale
 document.addEventListener("DOMContentLoaded", function () {
   loadMedicine();
@@ -75,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $allPatientPurchased.style.display = "none";
   loadPatientsWithoutPurchases();
   loadMedicinesWithRecipes();
+  loadSale();
 });
 $selectOptionsMedicine.addEventListener("change", () => {
   const idValue = $selectOptionsMedicine.value;
@@ -136,6 +142,17 @@ $selectOptionsQuarter.addEventListener("change", () => {
   loadTotalMedicineQuarter(idValue);
 });
 
+$selectSales.addEventListener("change", () => {
+  const idValue = $selectSales.value;
+  if (idValue != "0") {
+    loadAverageForSale(idValue);
+    return;
+  }
+  $imgEnd17.style.display = "inline-table";
+
+  $contEnd17.innerHTML = " ";
+});
+
 //FUNCIONES
 
 async function loadMedicine() {
@@ -152,6 +169,26 @@ async function loadMedicine() {
 
       $selectOptionsMedicine.insertAdjacentHTML("beforeend", html);
       $selectOptionsMedicine2.insertAdjacentHTML("beforeend", html);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function loadSale() {
+  try {
+    const response = await fetch(getSales, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    let before = 0;
+    result.forEach((sale) => {
+      if (sale.saleId != before) {
+        before = sale.saleId;
+        let html = `<option value="${sale.saleId}">Sale ${sale.saleId} for ${sale.patientName}</option>`;
+        $selectSales.insertAdjacentHTML("beforeend", html);
+      }
     });
   } catch (error) {
     console.error(error);
@@ -453,6 +490,29 @@ async function loadMedicinesWithRecipes() {
       $allTableEnd4.style.display = "inline-table";
     } else {
       $allTableEnd4.style.display = "none";
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function loadAverageForSale(id) {
+  try {
+    const response = await fetch(end17, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    $contEnd17.innerHTML = "";
+    let sale = result[id];
+    console.log(sale.averageQuantity);
+    if (sale.averageQuantity > 0) {
+      let html = ` <p class="card-text fs-3 text-center"> <b>Average:</b> ${sale.averageQuantity} units per sale  </p>`;
+
+      $contEnd17.insertAdjacentHTML("beforeend", html);
+    } else {
+      $contEnd17.innerHTML = `<p class="card-text"> <p class="card-text fs-3 text-center"> <b>TOTAL:</b>  </p>
+            <p class="card-text fs-3 text-center">${result.totalSales} units 😿  </p>`;
     }
   } catch (error) {
     console.error(error);

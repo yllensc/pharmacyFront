@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="../../style.css" />
     <script src="../../main.js" async></script>
-    <script src="../../Scripts/Main/sale.js" defer type="module"></script>
+    <script src="../../Scripts/Main/purchase.js" defer type="module"></script>
     <title>PharmacyCampus</title>
   </head>
   <body>
@@ -32,12 +32,12 @@
         </li>
         <li class="divider" data-text="main">Main</li>
         <li>
-          <a href="./sale.html" class="active"
+          <a href="./sale.html"
             ><i class="bx bxs-inbox icon"></i> Sale
           </a>
         </li>
         <li>
-          <a href="./purchase.html"
+          <a href="./purchase.html" class="active"
             ><i class="bx bxs-inbox icon"></i> Purchase
           </a>
         </li>
@@ -126,56 +126,53 @@
       <!-- MAIN -->
       <main>
         <div class="container mt-5">
-          <h1 class="mb-4">Sale</h1>
-          <form id="saleForm">
-            <div class="mb-3">
-              <label for="employee" class="form-label">Employee:</label>
-              <select class="form-select" name="employee" id="employee">
-                <!-- Se llena dinamicamente -->
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="patient" class="form-label">Patient:</label>
-              <select class="form-select" name="patient" id="patient">
-                <!-- Se llena dinamicamente -->
-              </select>
-            </div>
+            <h1 class="mb-4">Sale</h1>
+            <form id="saleForm">
+                <div class="mb-3">
+                    <label for="employee" class="form-label">Employee:</label>
+                    <select class="form-select" name="employee" id="employee">
+                        <!-- Se llena dinamicamente -->
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="patient" class="form-label">Patient:</label>
+                    <select class="form-select" name="patient" id="patient">
+                        <!-- Se llena dinamicamente -->
+                    </select>
+                </div>
+                
+                <label for="medicine">Medicines:</label>
+<select class="form-select" name="medicine" id="medicine" multiple>
+  <!-- Se llena dinamicamente -->
+</select>
 
-            <label for="medicine">Medicines:</label>
-            <select class="form-select" name="medicine" id="medicine" multiple>
-              <!-- Se llena dinamicamente -->
-            </select>
+<div id="medicinePrice">
+  <!-- Se llena dinamicamente -->
+</div>
 
-            <div id="medicinePrice">
-              <!-- Se llena dinamicamente -->
-            </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Medicamento</th>
+      <th>Cantidad</th>
+    </tr>
+  </thead>
+  <tbody id="medicineQuantities">
+    <!-- Esta sección se llenará dinámicamente -->
+  </tbody>
+</table>
 
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Medicamento</th>
-                  <th>Cantidad</th>
-                </tr>
-              </thead>
-              <tbody id="medicineQuantities">
-                <!-- Esta sección se llenará dinámicamente -->
-              </tbody>
-            </table>
 
-            <div class="mb-3">
-              <label for="total" class="form-label">Total:</label>
-              <input
-                type="number"
-                class="form-control"
-                name="total"
-                id="total"
-                min="1"
-                readonly
-              />
-            </div>
-
-            <button type="submit" class="btn btn-primary">Register Sale</button>
-          </form>
+                
+                
+    
+                <div class="mb-3">
+                    <label for="total" class="form-label">Total:</label>
+                    <input type="number" class="form-control" name="total" id="total" min="1" readonly>
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Register Sale</button>
+            </form>
         </div>
       </main>
       <!-- MAIN -->
