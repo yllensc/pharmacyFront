@@ -52,5 +52,8 @@ export const getEmployees = "http://localhost:5223/api/pharmacy/Employee/";
 export const getPatients = "http://localhost:5223/api/pharmacy/Patient/";
 export const end30 = "http://localhost:5223/api/pharmacy/Patient/patientsWithNoSalesIn2023";
 
+//PROVIDERS
+export const end7 = "http://localhost:5223/api/pharmacy/Provider/getProvidersWithCantMedicines";
+
 /* Routes HTML */
 export const indexRoute = "../Modules/index.js"; 
