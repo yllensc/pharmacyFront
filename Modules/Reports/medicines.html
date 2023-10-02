@@ -124,11 +124,10 @@
       <!-- MAIN -->
       <main>
         <h1 class="title text-center">Medicines report</h1>
-        <div class="container">
-          <div class="row">
-            <div class="row cards" style="width: auto; margin: auto auto;">
+          <div class="order">
+            <div class="item1" style="margin: auto auto auto auto;">
               <!--Enpoint 10-->
-              <div class="card-block inicio-card" style="width: 15rem;">
+              <div class="card-block inicio-card" style="width: 15rem; margin: auto auto auto auto;">
                 <div class="card-body text-center">
                   <img src="https://cdn-icons-png.flaticon.com/128/8042/8042846.png" class="card-img-top image-top"
                     alt="...">
@@ -137,34 +136,61 @@
                   <div class="card-text" id="infoEnd10"><!--Se llena de forma dinámica--></div>
                 </div>
               </div>
-              <!--Enpoint 10-->
             </div>
-          </div>
-        </div>
+            <!--Enpoint 10-->
+            <div>
+                <!--Endpoint 1-->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-header">
+                      💊💊 Medicines with less than <input id="stock" placeholder="50" min="1" type="number" style="width: 80px;"> in stock.</p></div>
+                    <br>
+                    <div id="allAboveStock" class="text-center">All medications are above stock 🎉</div>
+                    <table class="table" id="table1">
+                      <thead>
+                        <tr>
+                          <th scope="col">N°</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Stock</th>
+                          <th scope="col">Provider</th>
+                        </tr>
+                      </thead>
+                      <tbody id="infoEndpoint1">
+                        <!--Se agrega dinámicamente-->
+                      </tbody>
+                    </table>
+                  </div>
+                </div><br>
+                <!--Endpoint 1-->
+              
+                <!--Endpoint 38-->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-header">
+                      💊💊 Medicines with a price greater than $<input id="priceEnd38" placeholder="1500" type="number" style="width: 80px;"> and a stock less than <input id="stockEnd38" placeholder="50" min="1" type="number" style="width: 80px;"> u.</div>
+                    <br>
+                    <div id="textEnp38" class="text-center">There are no matches 👻</div>
+                    <table class="table" id="tableEnd38">
+                      <thead>
+                        <tr>
+                          <th scope="col">N°</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Stock</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Provider</th>
+                        </tr>
+                      </thead>
+                      <tbody id="infoEndpoint38">
+                        <!--Se agrega dinámicamente-->
+                      </tbody>
+                    </table>
+                  </div>
+                </div><br>
+                <!--Endpoint 38-->
+            </div>
           
-        <!--Endpoint 1-->
-        <div class="card">
-          <div class="card-body">
-            <div class="card-header">
-              💊💊 Medicines with less than <input id="stock" min="1" type="number" style="width: 80px;"> in stock.</p></div>
-            <br>
-            <div id="allAboveStock" class="text-center">All medications are above stock 🎉</div>
-            <table class="table" id="table1">
-              <thead>
-                <tr>
-                  <th scope="col">N°</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Stock</th>
-                  <th scope="col">Provider</th>
-                </tr>
-              </thead>
-              <tbody id="infoEndpoint1">
-                <!--Se agrega dinámicamente-->
-              </tbody>
-            </table>
           </div>
-        </div><br>
-        <!--Endpoint 1-->
+           
 
         <!--Endpoint 2-->
         <div class="card">
@@ -176,6 +202,18 @@
           </div>
         </div><br>
         <!--Endpoint 2-->
+
+        <!--Endpoint 26-->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header text-end">
+              💊💊Total medicines sold per month in <input id="yearMedicine" placeholder="2023" min="2020" type="number" style="width: 80px;"></p></p></div>
+            <br>
+            <div class="providers-2" id="infoEnd26"></div>
+          </div>
+        </div><br>
+        <!--Endpoint 26-->
+
         <!--Endpoint 6 ARREGLAR--> 
         <div class="card">
           <div class="card-body">

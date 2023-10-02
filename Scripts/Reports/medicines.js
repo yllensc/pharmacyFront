@@ -1,4 +1,4 @@
-import {end1, end2, end10 } from "../../Scripts/routes.js";
+import {end1, end2, end10, end26, end38 } from "../../Scripts/routes.js";
 
 const options = {
     method: "GET",
@@ -11,11 +11,22 @@ const options = {
 const $allAboveStockEnd1 = document.getElementById('allAboveStock');
 const $allTableEnd1 = document.getElementById("table1");
 const $tableEnd1 = document.getElementById("infoEndpoint1");
-const $selectorStock = document.getElementById("stock");
+const $inputStock = document.getElementById("stock");
 
 const $contEnd2 = document.getElementById("infoEnd2");
 
 const $contEnd10 = document.getElementById("infoEnd10");
+
+const $contEnd26 = document.getElementById("infoEnd26");
+const $inputYearMedicine = document.getElementById("yearMedicine");
+
+const $inputStock38 = document.getElementById("stockEnd38");
+const $inputPrice38 = document.getElementById("priceEnd38");
+const $tableEnd38 = document.getElementById("infoEndpoint38");
+const $allTableEnd38 = document.getElementById("tableEnd38");
+const $textEnp38 = document.getElementById("textEnp38");
+
+
 
 //AddEventListener - Medicine
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,14 +34,49 @@ document.addEventListener("DOMContentLoaded", function () {
     $allAboveStockEnd1.style.display = "none";
     loadInfoProviders();
     loadMoreExpensive();
+    $allTableEnd38.style.display = "none";
+    $textEnp38.style.display = "none";
 });
 
-$selectorStock.addEventListener('input', (e)=>{
+$inputStock.addEventListener('input', (e)=>{
     let select = e.target.value;
-    if(select != '0' && select>0 && select != ""){
+    if( select>0 && select != ""){
         loadUnderStock(select);
     }
     $allTableEnd1.style.display = 'none';
+});
+
+$inputYearMedicine.addEventListener('input', (e) =>
+{
+    let select = e.target.value;
+    if(select != '0' && select>=2022 && select != ""){
+        loadMedicinesMonth(select);
+    }
+});
+
+$inputStock38.addEventListener('input', (e) =>{
+    let selectS = e.target.value;
+    let selectP = $inputPrice38.value;
+    if(selectS != "" && selectP != "") 
+    {
+        if(selectS>0 && selectP>0)
+        {
+            loadParametersMedicine(selectP,selectS)
+        }
+    }   
+    $allTableEnd38.style.display = 'none';
+});
+$inputPrice38.addEventListener('input', (e) =>{
+    let selectP = e.target.value;
+    let selectS = $inputStock38.value;
+    if(selectS != "" && selectP != "") 
+    {
+        if(selectS>0 && selectP>0)
+        {
+            loadParametersMedicine(selectP,selectS)
+        }
+    }   
+    $allTableEnd38.style.display = 'none';
 });
 //Funciones
 
@@ -38,7 +84,6 @@ async function loadUnderStock(stock)
 {
     try
     {
-        console.log(stock);
         const response = await fetch(end1+`${stock}`,options);
         if(!response.ok)
         {
@@ -190,6 +235,151 @@ async function loadMoreExpensive()
             <p class="card-text fs-3 text-center">There isn't medicines😿  </p>`;
         }
        
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function loadMedicinesMonth(year)
+{
+    try
+    {
+        const response = await fetch(end26+`${year}`,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        $contEnd26.innerHTML = " ";
+        for (const month in result)
+        {
+            if(result[month] != "")
+            {
+                let modal = `<!-- Modal -->
+                                <div class="modal fade" id="medicines${month}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Sales Quantity: ${month}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <h3 class="text-center" >List Medicines</h3>
+                                        <table class="table" id="table12">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">N°</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Quantity Sold</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="${month}">
+                                            <!--Se agrega dinámicamente-->
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            <!-- Modal -->`;
+            $contEnd26.insertAdjacentHTML('beforeend',modal);
+            let total = 0;
+            result[month].forEach((medicines,index)=> 
+            {
+                const {medicineName, quantitySold} = medicines;
+                total += quantitySold;
+
+                let html = `<tr>
+                            <th scope="row">${index+1}</th>
+                            <td>${medicineName}</td>
+                            <td>${quantitySold}</td>
+                        </tr>`;
+                
+
+                document.getElementById(`${month}`).insertAdjacentHTML('beforeend',html);
+            });
+
+            let html = `<div class="card inicio-card" style="width: 18rem;">
+                        <div class="card-body text-center" style="padding: 5px;">
+                        <p class="card-text fs-5 text-center">
+                        <b>${month.toUpperCase()}</b></p>
+                        <p class="card-text fs-5 text-center" >Total</p>
+                        <p id="ID${month}" class="card-subtitle mb-2 text-center"><!-- Se agrega dinámicamente --> </p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicines${month}" >Medicines</button><br>
+                        </div>
+                    </div>`;
+            $contEnd26.insertAdjacentHTML('beforeend',html);
+            document.getElementById(`ID${month}`).innerHTML= total;
+
+            
+            }else
+            {
+                let html = `<div class="card inicio-card" style="width: 18rem;">
+                            <div class="card-body text-center" style="padding: 5px;">
+                            <p class="card-text fs-5 text-center">
+                            <b>${month.toUpperCase()}</b></p>
+                            <p class="card-text fs-5 text-center" >Total</p>
+                            <p class="card-subtitle mb-2 text-center"> 0😿 </p> 
+                            <p class="card-subtitle mb-2 text-center"> There were no sales</p> 
+                            </div>
+                        </div>`;
+                $contEnd26.insertAdjacentHTML('beforeend',html);
+
+            }
+            
+
+
+           
+
+        };
+
+            
+        
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function  loadParametersMedicine(price,stock){
+    try
+    {
+        const response = await fetch(end38+`Price${price}Stock${stock}`,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        $tableEnd38.innerHTML   = " ";
+        console.log(result)
+        if(result != "")
+        {
+            $textEnp38.style.display = 'none';
+
+            result.forEach((provider,index) => {
+                const {name,stock,providerName,price} = provider;
+                
+                let html = `<tr>
+                                <th scope="row">${index+1}</th>
+                                <td>${name}</td>
+                                <td>${stock}</td>
+                                <td>${price}</td>
+                                <td>${providerName}</td>
+                            </tr>`;
+
+                $tableEnd38.insertAdjacentHTML('beforeend',html);
+            });
+
+            $allTableEnd38.style.display = 'inline-table';
+        }else
+        {
+            $allTableEnd38.style.display = 'none';
+            $textEnp38.style.display = 'flex';
+        }
     }catch(error)
     {
         console.error(error);

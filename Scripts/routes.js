@@ -38,6 +38,11 @@ export const getMedicines = "http://localhost:5223/api/pharmacy/Medicine/";
 export const end1 = "http://localhost:5223/api/pharmacy/Medicine/underStock";
 export const end2 = "http://localhost:5223/api/pharmacy/Medicine/GetProvidersInfoWithMedicines";
 export const end6 = "http://localhost:5223/api/pharmacy/Medicine/ExpiresUnder";
+export const end26 = "http://localhost:5223/api/pharmacy/Medicine/salesIn";
+export const end38 = "http://localhost:5223/api/pharmacy/Medicine/getRange";
+
+
+
 export const end10 = "http://localhost:5223/api/pharmacy/Medicine/moreExpensive";
 
 //EMPLOYEES
