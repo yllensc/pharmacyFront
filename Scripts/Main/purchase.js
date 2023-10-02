@@ -187,7 +187,12 @@ async function createPurchase(purchase) {
   });
   if (response.ok) {
     const createdMedicine = await response.text();
-    alert(createdMedicine);
+    Swal.fire({
+      icon: 'success',
+      text: createdMedicine,
+    })
+
+    
     console.log(createdMedicine);
   } else {
     console.error("Error al crear el medicamento:", response);
