@@ -35,6 +35,7 @@ export const end22 = sale + "/patientMoreSpent";
 export const end25 = sale + "/patientsByMedicine2023";
 export const end33 = sale + "/patientTotalSpent";
 export const end36 = sale + "/totalMedicinesQuarter";
+export const end = sale + "/batchOfMedicines";
 
 //MEDICINES
 const medicine = "http://localhost:5223/api/pharmacy/Medicine";

@@ -1,4 +1,4 @@
-import { end1, end2, end10, end26, end38 } from "../../Scripts/routes.js";
+import { end1, end2, end10, end26, end38, end, getMedicines, end6 } from "../../Scripts/routes.js";
 
 const options = {
   method: "GET",
@@ -26,6 +26,12 @@ const $tableEnd38 = document.getElementById("infoEndpoint38");
 const $allTableEnd38 = document.getElementById("tableEnd38");
 const $textEnp38 = document.getElementById("textEnp38");
 
+const $selectOptionsMedicine = document.getElementById("selectMedicine");
+const $contEnd = document.getElementById("infoEnd");
+
+const $contEnp6 = document.getElementById("infoEndpoint6");
+
+
 //AddEventListener - Medicine
 document.addEventListener("DOMContentLoaded", function () {
   $allTableEnd1.style.display = "none";
@@ -34,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loadMoreExpensive();
   $allTableEnd38.style.display = "none";
   $textEnp38.style.display = "none";
+  loadMedicine();
 });
 
 $inputStock.addEventListener("input", (e) => {
@@ -71,7 +78,34 @@ $inputPrice38.addEventListener("input", (e) => {
   }
   $allTableEnd38.style.display = "none";
 });
+
+$selectOptionsMedicine.addEventListener("change", () => {
+  const idValue = $selectOptionsMedicine.value;
+  if (idValue != "0") {
+    loadBatchOfmedicines(idValue);
+    return;
+  }
+  $contEnd.innerHTML = " ";
+});
 //Funciones
+async function loadMedicine() {
+  try {
+    const response = await fetch(getMedicines, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    result.forEach((medicine) => {
+      const { id, name } = medicine;
+
+      let html = `<option value="${id}">${name}</option>`;
+
+      $selectOptionsMedicine.insertAdjacentHTML("beforeend", html);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 async function loadUnderStock(stock) {
   try {
@@ -81,7 +115,6 @@ async function loadUnderStock(stock) {
     }
     const result = await response.json();
     $tableEnd1.innerHTML = " ";
-    console.log(result);
     if (result != "") {
       $allAboveStockEnd1.style.display = "none";
 
@@ -120,68 +153,85 @@ async function loadInfoProviders() {
         const { medicinesList, idenNumber, name, email, address, id } =
           provider;
 
-        let html = `<div class="card inicio-card" style="width: 18rem;">
-                            <div class="card-body text-center" style="padding: 5px;">
-                            <img src="https://cdn-icons-png.flaticon.com/128/2982/2982693.png" alt="provider.png" style="width: 75px; ">
-                            <p class="card-subtitle mb-2 text-center">
-                            <b>${name}</b></p>
-                            <p class="card-subtitle mb-2 text-start">
-                            <b>Identifacion number:</b>${idenNumber} </p>
-                            <p class="card-subtitle mb-2 text-start">
-                            <b>Email:</b>${email} </p>
-                            <p class="card-subtitle mb-2 text-start">
-                            <b>Address:</b>${address} </p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicine${id}" >Medicines</button><br>
-                            </div>
-                        </div>`;
-        $contEnd2.insertAdjacentHTML("beforeend", html);
+        if(medicinesList != ""){
+            let html = `<div class="card inicio-card" style="width: 18rem;">
+                              <div class="card-body text-center" style="padding: 5px;">
+                              <img src="https://cdn-icons-png.flaticon.com/128/2982/2982693.png" alt="provider.png" style="width: 75px; ">
+                              <p class="card-subtitle mb-2 text-center">
+                              <b>${name}</b></p>
+                              <p class="card-subtitle mb-2 text-start">
+                              <b>Identifacion number:</b>${idenNumber} </p>
+                              <p class="card-subtitle mb-2 text-start">
+                              <b>Email:</b>${email} </p>
+                              <p class="card-subtitle mb-2 text-start">
+                              <b>Address:</b>${address} </p>
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicine${id}" >Medicines</button><br>
+                              </div>
+                          </div>`;
+          $contEnd2.insertAdjacentHTML("beforeend", html);
 
-        let modal = ` <!-- Modal -->
-                                <div class="modal fade" id="medicine${id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Provider: ${name}</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <h3 class="text-center" >List Medicines</h3>
-                                        <table class="table" id="table12">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">N°</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Stock</th>
-                                                <th scope="col">Price</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="infoEndpoint1ID${id}">
-                                            <!--Se agrega dinámicamente-->
-                                            </tbody>
-                                        </table>
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <!-- Modal -->`;
-        $contEnd2.insertAdjacentHTML("beforeend", modal);
+          let modal = ` <!-- Modal -->
+                                  <div class="modal fade" id="medicine${id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Provider: ${name}</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                          <h3 class="text-center" >List Medicines</h3>
+                                          <table class="table" id="table12">
+                                              <thead>
+                                              <tr>
+                                                  <th scope="col">N°</th>
+                                                  <th scope="col">Name</th>
+                                                  <th scope="col">Stock</th>
+                                                  <th scope="col">Price</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody id="infoEndpoint1ID${id}">
+                                              <!--Se agrega dinámicamente-->
+                                              </tbody>
+                                          </table>
+                                          </div>
+                                          <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          </div>
+                                      </div>
+                                      </div>
+                                  </div>
+                                  <!-- Modal -->`;
+          $contEnd2.insertAdjacentHTML("beforeend", modal);
 
-        medicinesList.forEach((medicines, index) => {
-          const { name, stock, price } = medicines;
-          let html = `<tr>
-                                <th scope="row">${index + 1}</th>
-                                <td>${name}</td>
-                                <td>${price}</td>
-                                <td>${stock}</td>
-                            </tr>`;
+          medicinesList.forEach((medicines, index) => {
+            const { name, stock, price } = medicines;
+            let html = `<tr>
+                                  <th scope="row">${index + 1}</th>
+                                  <td>${name}</td>
+                                  <td>${stock}</td>
+                                  <td>${price}</td>
+                              </tr>`;
 
-          document
-            .getElementById(`infoEndpoint1ID${id}`)
-            .insertAdjacentHTML("beforeend", html);
-        });
+            document.getElementById(`infoEndpoint1ID${id}`).insertAdjacentHTML("beforeend", html);
+          });
+        }else{
+          let html = `<div class="card inicio-card" style="width: 18rem;">
+                              <div class="card-body text-center" style="padding: 5px;">
+                              <img src="https://cdn-icons-png.flaticon.com/128/2982/2982693.png" alt="provider.png" style="width: 75px; ">
+                              <p class="card-subtitle mb-2 text-center">
+                              <b>${name}</b></p>
+                              <p class="card-subtitle mb-2 text-start">
+                              <b>Identifacion number:</b>${idenNumber} </p>
+                              <p class="card-subtitle mb-2 text-start">
+                              <b>Email:</b>${email} </p>
+                              <p class="card-subtitle mb-2 text-start">
+                              <b>Address:</b>${address} </p>
+                              <p class="card-text">There are no associated medications👻</p>
+                              </div>
+                          </div>`;
+          $contEnd2.insertAdjacentHTML("beforeend", html);
+        }
+        
       });
     } else {
       $contEnd2.innerHTML = `<p class="card-text">There is nothing here 👻</p>`;
@@ -330,6 +380,55 @@ async function loadParametersMedicine(price, stock) {
     } else {
       $allTableEnd38.style.display = "none";
       $textEnp38.style.display = "flex";
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function loadBatchOfmedicines(id)
+{
+  try {
+    console.log(id)
+    const response = await fetch(end, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    $contEnd.innerHTML = "";
+    var found = false;
+    if (result != "") {
+      result.forEach(medicine =>{
+        if(medicine.id == id)
+        {
+          found = true;
+          const {listBatch} = medicine;
+
+          listBatch.forEach(batch => {
+            const {expirationDate, stockLote} = batch;
+            let html = `<div class="card inicio-card" style="width: 18rem;">
+                            <div class="card-body text-center" style="padding: 5px;">
+                            <img src="https://cdn-icons-png.flaticon.com/128/9188/9188976.png" style="width: 75px; ">
+                            <p class="card-subtitle mb-2 text-center">
+                            <b>Expire Date</b>${expirationDate.substring(0,9)}</p>
+                            <p class="card-subtitle mb-2 text-center">
+                            <b>Stock Lote:</b> ${stockLote}</p>
+                            
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicine${id}" >Medicines</button><br>
+                            </div>
+                        </div>`;
+                $contEnd.insertAdjacentHTML('beforeend',html);
+          });
+          
+          return
+        }
+      });
+
+      if(!found){
+        let html = `<p class="card-subtitle mb-2 text-center">There are no purchases👻</p>`;
+        $contEnd.insertAdjacentHTML('beforeend',html);
+
+      }
     }
   } catch (error) {
     console.error(error);
