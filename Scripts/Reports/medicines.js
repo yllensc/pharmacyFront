@@ -27,9 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 $selectorStock.addEventListener('input', (e)=>{
     let select = e.target.value;
-    if(select != '50' && select>0 && select != ""){
+    if(select != '0' && select>0 && select != ""){
         loadUnderStock(select);
     }
+    $allTableEnd1.style.display = 'none';
 });
 //Funciones
 
@@ -37,12 +38,15 @@ async function loadUnderStock(stock)
 {
     try
     {
+        console.log(stock);
         const response = await fetch(end1+`${stock}`,options);
         if(!response.ok)
         {
             throw new Error(`Failed. State: ${response.status}`);
         } 
         const result = await response.json();
+        $tableEnd1.innerHTML   = " ";
+        console.log(result)
         if(result != "")
         {
             $allAboveStockEnd1.style.display = 'none';
