@@ -1,4 +1,4 @@
-import {end1, end2, end10, end26 } from "../../Scripts/routes.js";
+import {end1, end2, end10, end26, end38 } from "../../Scripts/routes.js";
 
 const options = {
     method: "GET",
@@ -20,17 +20,27 @@ const $contEnd10 = document.getElementById("infoEnd10");
 const $contEnd26 = document.getElementById("infoEnd26");
 const $inputYearMedicine = document.getElementById("yearMedicine");
 
+const $inputStock38 = document.getElementById("stockEnd38");
+const $inputPrice38 = document.getElementById("priceEnd38");
+const $tableEnd38 = document.getElementById("infoEndpoint38");
+const $allTableEnd38 = document.getElementById("tableEnd38");
+const $textEnp38 = document.getElementById("textEnp38");
+
+
+
 //AddEventListener - Medicine
 document.addEventListener("DOMContentLoaded", function () {
     $allTableEnd1.style.display = "none";
     $allAboveStockEnd1.style.display = "none";
     loadInfoProviders();
     loadMoreExpensive();
+    $allTableEnd38.style.display = "none";
+    $textEnp38.style.display = "none";
 });
 
 $inputStock.addEventListener('input', (e)=>{
     let select = e.target.value;
-    if(select != '0' && select>0 && select != ""){
+    if( select>0 && select != ""){
         loadUnderStock(select);
     }
     $allTableEnd1.style.display = 'none';
@@ -43,13 +53,37 @@ $inputYearMedicine.addEventListener('input', (e) =>
         loadMedicinesMonth(select);
     }
 });
+
+$inputStock38.addEventListener('input', (e) =>{
+    let selectS = e.target.value;
+    let selectP = $inputPrice38.value;
+    if(selectS != "" && selectP != "") 
+    {
+        if(selectS>0 && selectP>0)
+        {
+            loadParametersMedicine(selectP,selectS)
+        }
+    }   
+    $allTableEnd38.style.display = 'none';
+});
+$inputPrice38.addEventListener('input', (e) =>{
+    let selectP = e.target.value;
+    let selectS = $inputStock38.value;
+    if(selectS != "" && selectP != "") 
+    {
+        if(selectS>0 && selectP>0)
+        {
+            loadParametersMedicine(selectP,selectS)
+        }
+    }   
+    $allTableEnd38.style.display = 'none';
+});
 //Funciones
 
 async function loadUnderStock(stock)
 {
     try
     {
-        console.log(stock);
         const response = await fetch(end1+`${stock}`,options);
         if(!response.ok)
         {
@@ -217,7 +251,7 @@ async function loadMedicinesMonth(year)
             throw new Error(`Failed. State: ${response.status}`);
         } 
         const result = await response.json();
-        
+        $contEnd26.innerHTML = " ";
         for (const month in result)
         {
             if(result[month] != "")
@@ -305,6 +339,47 @@ async function loadMedicinesMonth(year)
 
             
         
+    }catch(error)
+    {
+        console.error(error);
+    }
+}
+
+async function  loadParametersMedicine(price,stock){
+    try
+    {
+        const response = await fetch(end38+`Price${price}Stock${stock}`,options);
+        if(!response.ok)
+        {
+            throw new Error(`Failed. State: ${response.status}`);
+        } 
+        const result = await response.json();
+        $tableEnd38.innerHTML   = " ";
+        console.log(result)
+        if(result != "")
+        {
+            $textEnp38.style.display = 'none';
+
+            result.forEach((provider,index) => {
+                const {name,stock,providerName,price} = provider;
+                
+                let html = `<tr>
+                                <th scope="row">${index+1}</th>
+                                <td>${name}</td>
+                                <td>${stock}</td>
+                                <td>${price}</td>
+                                <td>${providerName}</td>
+                            </tr>`;
+
+                $tableEnd38.insertAdjacentHTML('beforeend',html);
+            });
+
+            $allTableEnd38.style.display = 'inline-table';
+        }else
+        {
+            $allTableEnd38.style.display = 'none';
+            $textEnp38.style.display = 'flex';
+        }
     }catch(error)
     {
         console.error(error);
