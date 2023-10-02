@@ -29,7 +29,9 @@ const $textEnp38 = document.getElementById("textEnp38");
 const $selectOptionsMedicine = document.getElementById("selectMedicine");
 const $contEnd = document.getElementById("infoEnd");
 
-const $contEnp6 = document.getElementById("infoEndpoint6");
+const $inputyearEnd6 =document.getElementById("yearEnd6");
+const $allTableEnd6 = document.getElementById("table6");
+const $tableEnd6 = document.getElementById("infoEndpoint6");
 
 
 //AddEventListener - Medicine
@@ -86,6 +88,16 @@ $selectOptionsMedicine.addEventListener("change", () => {
     return;
   }
   $contEnd.innerHTML = " ";
+});
+
+$inputyearEnd6.addEventListener("input", (e) => {
+  let select = e.target.value;
+  if (select != "0" && select >= 2022 && select != "") {
+    loadExpireBefore(select);
+  }
+  $allTableEnd6.style.display = "none";
+
+
 });
 //Funciones
 async function loadMedicine() {
@@ -429,6 +441,38 @@ async function loadBatchOfmedicines(id)
         $contEnd.insertAdjacentHTML('beforeend',html);
 
       }
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function loadExpireBefore(id)
+{
+  try {
+    const response = await fetch(end6 + `${id}`, options);
+    if (!response.ok) {
+      throw new Error(`Failed. State: ${response.status}`);
+    }
+    const result = await response.json();
+    $tableEnd6.innerHTML = " ";
+    if (result != "") {
+
+      result.forEach((provider, index) => {
+        const { name, providerName } = provider;
+
+        let html = `<tr>
+                        <th scope="row">${index + 1}</th>
+                        <td>${name}</td>
+                        <td>${providerName}</td>
+                    </tr>`;
+
+        $tableEnd6.insertAdjacentHTML("beforeend", html);
+      });
+
+      $allTableEnd6.style.display = "inline-table";
+    } else {
+      $allTableEnd6.style.display = "none";
     }
   } catch (error) {
     console.error(error);
