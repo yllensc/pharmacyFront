@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(login, options)
       .then((response) => {
         if (!response.ok) {
+          alert(`Error: ${response.status}: ${response.statusText}`);
+
           throw new Error(`Failed. State: ${response.status}`);
         }
         return response.json();

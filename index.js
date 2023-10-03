@@ -64,6 +64,7 @@ async function loadSecondData() {
     const response = await fetch(end8, options);
 
     if (!response.ok) {
+      alert(`No se puede acceder a la info. Error: ${response.status}: ${response.statusText}`);
       throw new Error(`Failed. State: ${response.status}`);
     }
 
@@ -88,6 +89,7 @@ async function loadThirdData(value) {
     const response = await fetch(end14 + `?month=${value}`, options);
 
     if (!response.ok) {
+      alert(`No se puede acceder a la info. Error: ${response.status}: ${response.statusText}`);
       throw new Error(`Failed. State: ${response.status}`);
     }
 
@@ -107,6 +109,7 @@ async function loadFourthData() {
     const response = await fetch(end9, options);
 
     if (!response.ok) {
+      alert(`No se puede acceder a la info. Error: ${response.status}: ${response.statusText}`);
       throw new Error(`Failed. State: ${response.status}`);
     }
 
@@ -133,6 +136,7 @@ async function loadTable() {
     const response = await fetch(getSales, optionsGet);
 
     if (!response.ok) {
+      alert(`No se puede acceder a la info. Error: ${response.status}: ${response.statusText}`);
       throw new Error(`Failed. State: ${response.status}`);
     }
     const result = await response.json();
