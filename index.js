@@ -1,12 +1,26 @@
 import { end10, end8, end14, end9, getSales } from "./Scripts/routes.js";
+import { handleUnauthorizedResponse, getTokenFromCookies } from "./Scripts/Main/UtilService/AuthenticationToken.js"
+
+let token = getTokenFromCookies()
+console.log(token)
 const options = {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
+    'Authorization': `Bearer ${token}`,
+  },
+};
+const optionsGet = {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    'Authorization': `Bearer ${token}`,
+    'X-Version': `1.1`,
   },
 };
 
 document.addEventListener("DOMContentLoaded", function () {
+  handleUnauthorizedResponse();
   loadSelects();
   loadFirstData();
   loadSecondData();
@@ -116,7 +130,7 @@ async function loadFourthData() {
 async function loadTable() {
   const tableSalesBody = document.querySelector("#tableSalesBody");
   try {
-    const response = await fetch(getSales, options);
+    const response = await fetch(getSales, optionsGet);
 
     if (!response.ok) {
       throw new Error(`Failed. State: ${response.status}`);

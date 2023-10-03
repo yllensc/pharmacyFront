@@ -1,10 +1,11 @@
 import { getMedicines, getProviders, postManyPurchases } from "../routes.js";
-import { handleUnauthorizedResponse } from "./UtilService/AuthenticationToken.js"
+import { getTokenFromCookies, handleUnauthorizedResponse } from "./UtilService/AuthenticationToken.js"
 
 const optionsGet = {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
+    'Authorization': `Bearer ${getTokenFromCookies()}`,
   },
 };
 

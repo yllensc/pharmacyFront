@@ -1,12 +1,13 @@
 const refreshEndpoint = "http://localhost:5223/api/pharmacy/User/refresh-token";
 function getTokenFromCookies() {
   const tokenCookie = document.cookie
-    .split("; ")
-    .find((cookie) => cookie.startsWith("token="));
+  .split("; ")
+  .find((cookie) => cookie.startsWith("token="));
   if (tokenCookie) {
     const tokenValue = tokenCookie.split("=")[1];
     const decodeToken = decodeURIComponent(tokenValue);
-    console.log(decodeToken);
+    console.log("decodeToken",decodeToken);
+    console.log("cookie",tokenCookie)
     return decodeToken;
   }
   return null;

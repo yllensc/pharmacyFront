@@ -1,11 +1,13 @@
 import {end28,end35,end16,end24,end13,getProviders,end3 } from "../../Scripts/routes.js";
-import { handleUnauthorizedResponse, getTokenFromCookies } from "../Main/UtilService/AuthenticationToken.js"
+import { getTokenFromCookies, handleUnauthorizedResponse } from "../Main/UtilService/AuthenticationToken.js"
+let token = getTokenFromCookies()
+
 
 const options = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      'Authorization': `Bearer ${getTokenFromCookies()}`,
+      'Authorization': `Bearer ${token}`,
     },
 }; 
 //SELECTORES DOM

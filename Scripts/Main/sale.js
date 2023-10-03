@@ -10,6 +10,7 @@ const optionsGet = {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
+    'Authorization': `Bearer ${getTokenFromCookies()}`,
   },
 };
 
@@ -208,8 +209,8 @@ async function createSale(sale) {
   if (response.ok) {
     const createdMedicine = await response.text();
     Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
+      icon: 'success',
+      title: 'Success...',
       text:createdMedicine,
     })
     console.log(createdMedicine);
